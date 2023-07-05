@@ -16,16 +16,17 @@
 <script>
 import LevelButton from '@/components/LevelButton.vue';
 import OptionButton from '@/components/OptionButton.vue';
+import fetchJson from '@/utilitys/fetch-json.js';
 
 export default {
-  name: 'MA30',
+  name: 'MA3011',
   components: {
     LevelButton,
     OptionButton,
   },
   data() {
     return {
-      gameData: [
+      data: [
       ],
       currentLevel: 1,
       optionsActive: ["previous", "start", "next", "hint", "record", "submit"],
@@ -42,64 +43,69 @@ export default {
     }
   },
   mounted() {
+    (async () => {
+      const res = await fetchJson('/math/grade30-game-info.json');
+      this.data = res.data;
+      console.log(res.data);
+    })();
   },
 };
 </script>
 
 <style>
 .content {
-    display: flex;
-    justify-content: center;
-    margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
 }
 
 .gameWindow {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .myCanvas {
-    position: relative;
-    display: flex;
-    width: 900px;
-    height: 650px;
-    background-color: #eee;
-    border: 5px solid #ADC090;
-    border-radius: 10px;
-    box-sizing: content-box;
+  position: relative;
+  display: flex;
+  width: 900px;
+  height: 650px;
+  background-color: #eee;
+  border: 5px solid #ADC090;
+  border-radius: 10px;
+  box-sizing: content-box;
 }
 
 /* Rule */
 .gameRule {
-    position: absolute;
-    z-index: 1000;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    width: 100%;
-    height: 100%;
-    background-color: #eee;
+  position: absolute;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 100%;
+  height: 100%;
+  background-color: #eee;
 }
 .gameRule h1 {
-    font-weight: bold;
-    font-size: 40px;
+  font-weight: bold;
+  font-size: 40px;
 }
 .gameRule>:first-child {
-    flex: 1;
-    margin: 4rem;
+  flex: 1;
+  margin: 4rem;
 }
 .gameRule .context {
-    flex: 8;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    margin-left: 8rem;
+  flex: 8;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  margin-left: 8rem;
 }
 .gameRule>:last-child {
-    display: flex;
-    flex: 1;
-    justify-content: end;
-    align-items: end;
-    margin: 4rem;
+  display: flex;
+  flex: 1;
+  justify-content: end;
+  align-items: end;
+  margin: 4rem;
 }
 </style>

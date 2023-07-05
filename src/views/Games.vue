@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import getAssetsFile from '@/util/pub-use'
+import getAssetsFile from '@/utilitys/pub-use'
 
 export default {
   name: 'Games',

@@ -37,13 +37,13 @@ const router = createRouter({
             {
               path: 'MA3011',
               name: 'MA3011',
-              component: () => import('@/views/Math/Grade30/MA3011/index.vue'),
+              component: () => import('@/views/Math/Grade30/Unit1/MA3011.vue'),
               meta: { requiresAuth: true },
             },
             {
               path: 'MA3012',
               name: 'MA3012',
-              component: () => import('@/views/Math/Grade30/MA3012.vue'),
+              component: () => import('@/views/Math/Grade30/Unit1/MA3012.vue'),
               meta: { requiresAuth: true },
             },
           ]

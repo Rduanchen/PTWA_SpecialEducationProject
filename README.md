@@ -1,43 +1,7 @@
-# Educational Games
+# Vue 3 + Vite
 
-![educational_games](https://img.shields.io/github/v/tag/PTWA-NPO/PTWA-NPO.github.io)
-[![educational Games](https://img.shields.io/badge/Educational_Games-Tatal_8-blue.svg)](./index.html)
+This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
 
----
-這是一個用於國小教育的遊戲教案。
+## Recommended IDE Setup
 
-# 使用方式
-
-[//]: # (TODO demo gif)
-
-1. 點擊連接網址，進入遊戲網站
-    [**連結網址**](https://PTWA-NPO.github.io/)
-
-2. 在網址欄輸入網址
-    `https://PTWA-NPO.github.io/`
-
-[//]: # (TODO demo gif)
-
-
-# 網站介紹
-
-## 國文
-
-- 遊戲路徑：進入[遊戲網站](https://PTWA-NPO.github.io/)後，點擊 **國文**，選擇 **年級**
-## 數學
-
-- 遊戲路徑：進入[遊戲網站](https://PTWA-NPO.github.io/)後，點擊 **數學**，選擇 **年級**
-## 多元科技
-
-- 遊戲路徑：進入[遊戲網站](https://PTWA-NPO.github.io/)後，點擊 **多元科技**，選擇 **年級**
-
-# Future Work
-
-1. [ ] 修整檔案結構
-2. [ ] 更多遊戲開發中
-3. [ ] 適合三年級生的遊戲
-4. [ ] 加入國文遊戲
-
-## Change Log
-
-View [CHANGELOG.md](./CHANGELOG.md)
+- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).

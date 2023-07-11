@@ -1,22 +1,31 @@
 <template>
   <div class="gameWindow">
-    <LevelButton @levelClick="changeCurrentLevel" :data="5" :currentNumber="currentLevel"></LevelButton>
+    <LevelButton @levelClick="changeCurrentLevel" :data="4" :currentNumber="currentLevel"></LevelButton>
     <div class="board">
       <div class="question">
-        <span v-if="data"> {{ getQuestion(currentLevel) }}是 </span>
-        <input type="text">
-        <span>個1和</span>
-        <input type="text">
-        <span>個0.1合起來的</span>
+        <div class="level1" v-if="currentLevel === 1">
+          <span v-if="data"> {{ getQuestion(currentLevel-1) }} 是</span>
+          <input type="text" style="text-align:center">
+          <span>個 1 和</span>
+          <input type="text" style="text-align:center">
+          <span>個 0.1 合起來的</span>
+        </div>
+        <div class="level234" v-if="currentLevel >= 2">
+          <span v-if="data"> {{ getQuestion(currentLevel-1) }} </span>
+          <input type="text">
+        </div>
       </div>
       <div class="blocks">
         <div class="ditgit">
-          <div class="text"> 個位數 </div>
-          <input type="number" class="control">
+          <div class="text"> 
+            <span class="spanTop">個</span>
+            <span>位</span>
+          </div>
+          <input type="number" class="control" value="0" max="9" min="0">
         </div>
         <div class="decile">
           <div class="text"> 十分位 </div>
-          <input type="number" class="control">
+          <input type="number" class="control" value="0" max="9" min="0">
         </div>
       </div>
     </div>
@@ -39,8 +48,9 @@ export default {
     return {
       gameId: 'MA3013',
       data: null,
-      currentLevel: 0,
+      currentLevel: 1,
       optionsActive: ["previous", "start", "next", "hint", "record", "submit"],
+      levels: 4,
       
     };
   },
@@ -79,6 +89,7 @@ export default {
 .board {
   position: relative;
   display: flex;
+  flex-direction: column;
   width: 900px;
   height: 650px;
   background-color: #eee;
@@ -87,9 +98,61 @@ export default {
   box-sizing: content-box;
 }
 
-*{
-  border: 1px solid #000;
+.question{
+  justify-content: center;
+  margin: 6% auto;
+  font-size: 40px;
 }
 
+.question input{
+  background-color: transparent;
+  border: none;
+  border: 1px solid #3d3d3d;
+  border-radius: 4px;
+  margin: 10px;
+  width: 40px;
+  height: 50px;
+
+}
+
+.blocks{
+  display: flex;
+  justify-content: center;
+  margin-top: 8%;
+}
+
+.blocks .ditgit, .decile{
+  border: 1px solid #000;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.blocks .text{
+  text-align: center;
+  writing-mode: vertical-lr;
+  font-size: 30px;
+  margin: 0 auto;
+  padding: 15px 5px 0 5px;
+  letter-spacing: 20px;
+}
+
+.blocks .text .spanTop{
+  margin-bottom: 50px;
+}
+
+.blocks .control{
+  display: flex;
+  text-align: center;
+  padding-left: 10px;
+  font-size: 40px;
+  margin: 0 auto;
+}
+
+.blocks input{
+  width: 70px;
+  height: 60px;
+  border: none ;
+  border-top: 1px solid #000;
+}
 
 </style>

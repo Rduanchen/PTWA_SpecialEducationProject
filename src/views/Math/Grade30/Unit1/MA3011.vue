@@ -1,12 +1,23 @@
 <template>
   <div class="gameWindow">
     <LevelButton @levelClick="changeCurrentLevel" :data="5" :currentNumber="currentLevel"></LevelButton>
-    <div class="myCanvas">
-      <div class="gameRule">
-        <h1>遊戲玩法：</h1>
-        <div class="context">
+    <div class="board">
+      <div class="question">
+        <span v-if="data"> {{ getQuestion(currentLevel) }}是 </span>
+        <input type="text">
+        <span>個1和</span>
+        <input type="text">
+        <span>個0.1合起來的</span>
+      </div>
+      <div class="blocks">
+        <div class="ditgit">
+          <div class="text"> 個位數 </div>
+          <input type="number" class="control">
         </div>
-        <h1>準備好了嗎？點擊遊戲開始！</h1>
+        <div class="decile">
+          <div class="text"> 十分位 </div>
+          <input type="number" class="control">
+        </div>
       </div>
     </div>
     <OptionButton :optionsActive="optionsActive" @optionsEvent="optionsEvent"></OptionButton>
@@ -19,17 +30,18 @@ import OptionButton from '@/components/OptionButton.vue';
 import fetchJson from '@/utilitys/fetch-json.js';
 
 export default {
-  name: 'MA3011',
+  name: 'MA3013',
   components: {
     LevelButton,
     OptionButton,
   },
   data() {
     return {
-      data: [
-      ],
-      currentLevel: 1,
+      gameId: 'MA3013',
+      data: null,
+      currentLevel: 0,
       optionsActive: ["previous", "start", "next", "hint", "record", "submit"],
+      
     };
   },
   methods: {
@@ -40,31 +52,31 @@ export default {
     optionsEvent(option) {
       console.log(option);
       // 請在這裡寫開始遊戲、上一關、下一關等等等的邏輯
-    }
+    },
+    getQuestion(level){
+      let qid = Math.floor(Math.random() * 5)
+      return this.data.questions[level][qid]
+    },
   },
   mounted() {
     (async () => {
       const res = await fetchJson('/math/grade30-game-info.json');
-      this.data = res.data;
-      console.log(res.data);
+      this.data = res.data.unit_3.filter((item) => {
+        return item.id === this.gameId;
+      })[0];
+      console.log(this.data.questions);
     })();
   },
 };
 </script>
 
 <style>
-.content {
-  display: flex;
-  justify-content: center;
-  margin-top: 1rem;
-}
-
 .gameWindow {
   display: flex;
   flex-direction: column;
 }
 
-.myCanvas {
+.board {
   position: relative;
   display: flex;
   width: 900px;
@@ -75,37 +87,9 @@ export default {
   box-sizing: content-box;
 }
 
-/* Rule */
-.gameRule {
-  position: absolute;
-  z-index: 1000;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  width: 100%;
-  height: 100%;
-  background-color: #eee;
+*{
+  border: 1px solid #000;
 }
-.gameRule h1 {
-  font-weight: bold;
-  font-size: 40px;
-}
-.gameRule>:first-child {
-  flex: 1;
-  margin: 4rem;
-}
-.gameRule .context {
-  flex: 8;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  margin-left: 8rem;
-}
-.gameRule>:last-child {
-  display: flex;
-  flex: 1;
-  justify-content: end;
-  align-items: end;
-  margin: 4rem;
-}
+
+
 </style>

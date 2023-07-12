@@ -1,6 +1,6 @@
 <template>
   <div class="gameWindow">
-    <LevelButton @levelClick="changeCurrentLevel" :data="5" :currentNumber="currentLevel"></LevelButton>
+    <LevelButton @levelClick="changeCurrentLevel" :data="1" :currentNumber="currentLevel"></LevelButton>
     <div class="board">
       <div class="left">
         <div class="column">

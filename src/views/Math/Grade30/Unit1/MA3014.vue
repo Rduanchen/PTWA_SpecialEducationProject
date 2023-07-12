@@ -1,67 +1,32 @@
 <template>
   <div class="gameWindow">
-    <LevelButton @levelClick="changeCurrentLevel" :data="1" :currentNumber="currentLevel"></LevelButton>
+    <LevelButton @levelClick="changeCurrentLevel" :data="4" :currentNumber="currentLevel"></LevelButton>
     <div class="board">
-      <div class="left">
-        <div class="blanks">
-          <table>
-            <caption>這是台鐵的火車時刻表。</caption>
-            <tr>
-              <th style="width:80px;">
-                <div class="title">
-                  <b>車次</b>
-                  <em>站名</em>
-                </div>
-              </th>
-              <th>110</th>
-              <th>122</th>
-              <th>116</th>
-            </tr>
-            <tr>
-              <td>高雄</td>
-              <td>07:54</td>
-              <td>12:05</td>
-              <td>09:09</td>
-            </tr>
-            <tr>
-              <td>臺南</td>
-              <td>08:32</td>
-              <td>12:42</td>
-              <td>09:46</td>
-            </tr>
-            <tr>
-              <td>嘉義</td>
-              <td>08:57</td>
-              <td>13:28</td>
-              <td>10:28</td>
-            </tr>
-            <tr>
-              <td>臺中</td>
-              <td>09:54</td>
-              <td>14:45</td>
-              <td>11:45</td>
-            </tr>
-            <tr>
-              <td>板橋</td>
-              <td>11:26</td>
-              <td>16:51</td>
-              <td> - </td>
-            </tr>
-            <tr>
-              <td>臺北</td>
-              <td>11:37</td>
-              <td>17:03</td>
-              <td>14:03</td>
-            </tr>
-          </table>
+      <div class="question">
+        <div class="level1" v-if="currentLevel === 1">
+          <span v-if="data"> {{ getQuestion(currentLevel-1) }} 是</span>
+          <input type="text" style="text-align:center">
+          <span>個 1 和</span>
+          <input type="text" style="text-align:center">
+          <span>個 0.1 合起來的</span>
+        </div>
+        <div class="level234" v-if="currentLevel >= 2">
+          <span v-if="data"> {{ getQuestion(currentLevel-1) }} </span>
+          <input type="text">
         </div>
       </div>
-      <div class="right">
-        <ol>
-          <li>
-            <h3>{{data.questions}}</h3>
-          </li>
-        </ol>
+      <div class="blocks">
+        <div class="ditgit">
+          <div class="text"> 
+            <span class="spanTop">個</span>
+            <span>位</span>
+          </div>
+          <input type="number" class="control" value="0" max="9" min="0">
+        </div>
+        <div class="decile">
+          <div class="text"> 十分位 </div>
+          <input type="number" class="control" value="0" max="9" min="0">
+        </div>
       </div>
     </div>
     <OptionButton :optionsActive="optionsActive" @optionsEvent="optionsEvent"></OptionButton>
@@ -74,20 +39,19 @@ import OptionButton from '@/components/OptionButton.vue';
 import fetchJson from '@/utilitys/fetch-json.js';
 
 export default {
-  name: 'MA3015',
+  name: 'MA3013',
   components: {
     LevelButton,
     OptionButton,
   },
   data() {
     return {
-      gameId: 'MA3015',
+      gameId: 'MA3013',
       data: null,
       currentLevel: 1,
-      questions: [],
       optionsActive: ["previous", "start", "next", "hint", "record", "submit"],
-      levels: 1,
-      description: ["老師把圖畫用圖釘固定，由左到右排成一排，每一張和下一張共用 1 個圖釘"]
+      levels: 4,
+      
     };
   },
   methods: {
@@ -98,15 +62,19 @@ export default {
     optionsEvent(option) {
       console.log(option);
       // 請在這裡寫開始遊戲、上一關、下一關等等等的邏輯
-    }
+    },
+    getQuestion(level){
+      let qid = Math.floor(Math.random() * 5)
+      return this.data.questions[level][qid]
+    },
   },
   mounted() {
     (async () => {
       const res = await fetchJson('/math/grade30-game-info.json');
-      this.data = res.data.unit_5.filter((item) => {
+      this.data = res.data.unit_3.filter((item) => {
         return item.id === this.gameId;
       })[0];
-      console.log(this.data);
+      console.log(this.data.questions);
     })();
   },
 };

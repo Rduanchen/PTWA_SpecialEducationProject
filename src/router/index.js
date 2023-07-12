@@ -52,6 +52,12 @@ const router = createRouter({
               component: () => import('@/views/Math/Grade30/Unit1/MA3013.vue'),
               meta: { requiresAuth: true },
             },
+            {
+              path: 'MA3014',
+              name: 'MA3014',
+              component: () => import('@/views/Math/Grade30/Unit1/MA3014.vue'),
+              meta: { requiresAuth: true },
+            },
           ]
         },
       ],

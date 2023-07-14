@@ -58,6 +58,30 @@ const router = createRouter({
               component: () => import('@/views/Math/Grade30/Unit1/MA3014.vue'),
               meta: { requiresAuth: true },
             },
+            {
+              path: 'MA3015',
+              name: 'MA3015',
+              component: () => import('@/views/Math/Grade30/Unit1/MA3015.vue'),
+              meta: { requiresAuth: true },
+            },
+            {
+              path: 'MA3016',
+              name: 'MA3016',
+              component: () => import('@/views/Math/Grade30/Unit1/MA3016.vue'),
+              meta: { requiresAuth: true },
+            },
+            {
+              path: 'MA3017',
+              name: 'MA3017',
+              component: () => import('@/views/Math/Grade30/Unit1/MA3017.vue'),
+              meta: { requiresAuth: true },
+            },
+            {
+              path: 'MA3018',
+              name: 'MA3018',
+              component: () => import('@/views/Math/Grade30/Unit1/MA3018.vue'),
+              meta: { requiresAuth: true },
+            },
           ]
         },
       ],

@@ -11,6 +11,9 @@ export default {
       ]
     };
   },
+  created() {
+    console.log('gameView')
+  }
 };
 </script>
 

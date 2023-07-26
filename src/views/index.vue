@@ -93,7 +93,7 @@
                 <a href="#" class="submenu-link-block"><img src="@/assets/images/grade_btn/grade2.png" class="img-fluid" ></a>
               </div>
               <div class="col">
-                <router-link :to="{ name: 'Grade3Games' }" alt="數學三上遊戲" class="submenu-link-block">
+                <router-link :to="{ name: 'MA30' }" alt="數學三上遊戲" class="submenu-link-block">
                   <img src="@/assets/images/grade_btn/grade3.png" class="img-fluid" ></router-link>
               </div>
               <div class="col">

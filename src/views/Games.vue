@@ -1,18 +1,20 @@
 <template>
-  <div class="gameBlock">
-    <router-link :to="{ name: 'MA3011' }" class="game" :id='1'>
+  <div class="gameBlock" v-if="true">
+    <router-link :to="{ name: 'MA301' }" class="game" :id='1'>
       <img :src="getAssetsFile(`math_grade3/${1}.jpg`)" class="img"/>
       <h3>{{ '認識毫升' }}</h3>
     </router-link>
-    <router-link :to="{ name: 'MA3012' }" class="game" v-for="(item, key) in gameInfo" :key="key" :id='key + 1'>
+    <router-link :to="{ name: 'MA301' }" class="game" v-for="(item, key) in gameInfo" :key="key" :id='key + 1'>
       <img :src="getAssetsFile(`math_grade3/${key + 1}.jpg`)" class="img"/>
       <h3>{{ item.title }}</h3>
     </router-link>
   </div>
+  <router-view name="MA3011"></router-view>
 </template>
 
 <script>
 import getAssetsFile from '@/utilitys/pub-use'
+import router from '../router';
 
 export default {
   name: 'Games',
@@ -62,6 +64,7 @@ export default {
     getAssetsFile: getAssetsFile,
   },
   mounted() {
+    // console.log(this.$router.currentRoute.path)
   },
 };
 </script>

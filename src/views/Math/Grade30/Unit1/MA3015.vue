@@ -13,7 +13,7 @@
         </div>
       </div>
       <div class="blocks">
-        <img src="" alt="">
+        <img src="./assets/MA3015_pin.png" alt="">
       </div>
     </div>
     <OptionButton :optionsActive="optionsActive" @optionsEvent="optionsEvent"></OptionButton>

@@ -95,6 +95,7 @@ export default {
     }
   },
   mounted() {
+    console.log('wtf');
     (async () => {
       const res = await fetchJson('/math/grade30-game-info.json');
       this.data = res.data.unit_7.filter((item) => {

@@ -1,13 +1,17 @@
 <template>
   <div class="gameWindow">
-    <LevelButton @levelClick="changeCurrentLevel" :data="1" :currentNumber="currentLevel"></LevelButton>
+    <LevelButton
+      @levelClick="changeCurrentLevel"
+      :data="1"
+      :currentNumber="currentLevel"
+    ></LevelButton>
     <div class="board">
       <div class="left">
         <h3>這是臺鐵的火車時刻表。</h3>
         <div class="blanks">
           <table>
             <tr>
-              <th style="width:80px;">
+              <th style="width: 80px">
                 <div class="title">
                   <b>車次</b>
                   <em>站名</em>
@@ -34,43 +38,46 @@
             <h4>{{ question }}</h4>
             <div class="question" v-if="qid === 0">
               <span>（</span>
-              <input v-model="answers[qid]">
+              <input v-model="answers[qid]" />
               <span>）午（</span>
-              <input v-model="answers[qid+1]">
+              <input v-model="answers[qid + 1]" />
               <span>）時（</span>
-              <input v-model="answers[qid+2]">
+              <input v-model="answers[qid + 2]" />
               <span>）分</span>
             </div>
             <div class="question" v-if="qid >= 1">
               <span>車次（</span>
-              <input v-model="answers[qid+2]">
+              <input v-model="answers[qid + 2]" />
               <span>）的火車</span>
             </div>
           </li>
         </ol>
       </div>
     </div>
-    <OptionButton :optionsActive="optionsActive" @optionsEvent="optionsEvent"></OptionButton>
+    <OptionButton
+      :optionsActive="optionsActive"
+      @optionsEvent="optionsEvent"
+    ></OptionButton>
   </div>
 </template>
 
 <script>
-import LevelButton from '@/components/LevelButton.vue';
-import OptionButton from '@/components/OptionButton.vue';
-import fetchJson from '@/utilitys/fetch-json.js';
+import LevelButton from "@/components/LevelButton.vue";
+import OptionButton from "@/components/OptionButton.vue";
+import fetchJson from "@/utilitys/fetch-json.js";
 
 export default {
-  name: 'MA3015',
+  name: "MA3016",
   components: {
     LevelButton,
     OptionButton,
   },
   data() {
     return {
-      gameId: 'MA3015',
+      gameId: "MA3015",
       data: {
         id: 123,
-        questions: []
+        questions: [],
       },
       currentLevel: 1,
       answers: [],
@@ -78,31 +85,31 @@ export default {
       levels: 1,
       blankContent: [
         {
-          city: '高雄',
-          time: ["07 : 54", "12 : 05", "09 : 09"]
+          city: "高雄",
+          time: ["07 : 54", "12 : 05", "09 : 09"],
         },
         {
-          city: '臺南',
-          time: ["08 : 32", "12 : 42", "09 : 46"]
+          city: "臺南",
+          time: ["08 : 32", "12 : 42", "09 : 46"],
         },
         {
-          city: '嘉義',
-          time: ["08 : 57", "13 : 28", "10 : 28"]
+          city: "嘉義",
+          time: ["08 : 57", "13 : 28", "10 : 28"],
         },
         {
-          city: '臺中',
-          time: ["09 : 54", "14 : 45", "11 : 45"]
+          city: "臺中",
+          time: ["09 : 54", "14 : 45", "11 : 45"],
         },
         {
-          city: '板橋',
-          time: [ "11 : 26", "16 : 51", "-"]
+          city: "板橋",
+          time: ["11 : 26", "16 : 51", "-"],
         },
         {
-          city: '臺北',
-          time: ["11 : 37", "17 : 03", "14 : 03"]
+          city: "臺北",
+          time: ["11 : 37", "17 : 03", "14 : 03"],
         },
       ],
-      rowIndex: 6
+      rowIndex: 6,
     };
   },
   methods: {
@@ -113,11 +120,11 @@ export default {
     optionsEvent(option) {
       console.log(option);
       // 請在這裡寫開始遊戲、上一關、下一關等等等的邏輯
-    }
+    },
   },
   mounted() {
     (async () => {
-      const res = await fetchJson('/math/grade30-game-info.json');
+      const res = await fetchJson("/math/grade30-game-info.json");
       this.data = res.data.unit_5.filter((item) => {
         return item.id === this.gameId;
       })[0];
@@ -127,7 +134,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .gameWindow {
   display: flex;
   flex-direction: column;
@@ -138,17 +145,17 @@ export default {
   width: 900px;
   height: 650px;
   background-color: #eee;
-  border: 5px solid #ADC090;
+  border: 5px solid #adc090;
   border-radius: 10px;
   box-sizing: content-box;
 }
 
-.board .left{
+.board .left {
   flex: 1.2;
   position: relative;
 }
 
-.left h3{
+.left h3 {
   position: absolute;
   top: 15%;
   left: 7%;
@@ -162,7 +169,8 @@ table {
   margin: 0 auto;
   margin-top: 35%;
 }
-th, td {
+th,
+td {
   padding: 0;
   border: 1px #525152 solid;
   text-align: center;
@@ -176,7 +184,7 @@ tr td:first-child {
   background: #bdc3d8;
 }
 
-td.name{
+td.name {
   font-weight: bold;
 }
 
@@ -189,7 +197,8 @@ td.name{
   position: relative; /*让里面的两个子容器绝对定位*/
 }
 
-b, em {
+b,
+em {
   font-size: 17px;
 }
 
@@ -210,27 +219,27 @@ em {
   width: 55x;
 }
 
-.board .right{
+.board .right {
   flex: 1;
   padding: 10% 3% 0 0;
-  border: none
+  border: none;
 }
 
-.right h4{
+.right h4 {
   letter-spacing: 1px;
   line-height: 30px;
 }
 
-.right span{
+.right span {
   font-size: 24px;
   letter-spacing: 1px;
 }
 
-.right .question{
+.right .question {
   margin-bottom: 10%;
 }
 
-.right input{
+.right input {
   border: none;
   background-color: transparent;
   width: 40px;
@@ -238,13 +247,12 @@ em {
   font-size: 24px;
 }
 
-.right input:focus{
+.right input:focus {
   border: none;
   outline: none;
 }
 
-ol li::marker{
+ol li::marker {
   font-size: 24px;
 }
-
 </style>

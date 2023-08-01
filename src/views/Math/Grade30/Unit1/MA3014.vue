@@ -1,57 +1,63 @@
 <template>
   <div class="gameWindow">
-    <LevelButton @levelClick="changeCurrentLevel" :data="4" :currentNumber="currentLevel"></LevelButton>
+    <LevelButton
+      @levelClick="changeCurrentLevel"
+      :data="4"
+      :currentNumber="currentLevel"
+    ></LevelButton>
     <div class="board">
       <div class="question">
         <div class="level1" v-if="currentLevel === 1">
-          <span v-if="data"> {{ getQuestion(currentLevel-1) }} 是</span>
-          <input type="text" style="text-align:center">
+          <span v-if="data"> {{ getQuestion(currentLevel - 1) }} 是</span>
+          <input type="text" style="text-align: center" />
           <span>個 1 和</span>
-          <input type="text" style="text-align:center">
+          <input type="text" style="text-align: center" />
           <span>個 0.1 合起來的</span>
         </div>
         <div class="level234" v-if="currentLevel >= 2">
-          <span v-if="data"> {{ getQuestion(currentLevel-1) }} </span>
-          <input type="text">
+          <span v-if="data"> {{ getQuestion(currentLevel - 1) }} </span>
+          <input type="text" />
         </div>
       </div>
       <div class="blocks">
         <div class="ditgit">
-          <div class="text"> 
+          <div class="text">
             <span class="spanTop">個</span>
             <span>位</span>
           </div>
-          <input type="number" class="control" value="0" max="9" min="0">
+          <input type="number" class="control" value="0" max="9" min="0" />
         </div>
         <div class="decile">
-          <div class="text"> 十分位 </div>
-          <input type="number" class="control" value="0" max="9" min="0">
+          <div class="text">十分位</div>
+          <input type="number" class="control" value="0" max="9" min="0" />
         </div>
       </div>
     </div>
-    <OptionButton :optionsActive="optionsActive" @optionsEvent="optionsEvent"></OptionButton>
+    <OptionButton
+      :optionsActive="optionsActive"
+      @optionsEvent="optionsEvent"
+    ></OptionButton>
   </div>
 </template>
 
 <script>
-import LevelButton from '@/components/LevelButton.vue';
-import OptionButton from '@/components/OptionButton.vue';
-import fetchJson from '@/utilitys/fetch-json.js';
+import LevelButton from "@/components/LevelButton.vue";
+import OptionButton from "@/components/OptionButton.vue";
+import fetchJson from "@/utilitys/fetch-json.js";
 
 export default {
-  name: 'MA3013',
+  name: "MA3014",
   components: {
     LevelButton,
     OptionButton,
   },
   data() {
     return {
-      gameId: 'MA3013',
+      gameId: "MA3013",
       data: null,
       currentLevel: 1,
       optionsActive: ["previous", "start", "next", "hint", "record", "submit"],
       levels: 4,
-      
     };
   },
   methods: {
@@ -63,14 +69,14 @@ export default {
       console.log(option);
       // 請在這裡寫開始遊戲、上一關、下一關等等等的邏輯
     },
-    getQuestion(level){
-      let qid = Math.floor(Math.random() * 5)
-      return this.data.questions[level][qid]
+    getQuestion(level) {
+      let qid = Math.floor(Math.random() * 5);
+      return this.data.questions[level][qid];
     },
   },
   mounted() {
     (async () => {
-      const res = await fetchJson('/math/grade30-game-info.json');
+      const res = await fetchJson("/math/grade30-game-info.json");
       this.data = res.data.unit_3.filter((item) => {
         return item.id === this.gameId;
       })[0];
@@ -80,7 +86,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .gameWindow {
   display: flex;
   flex-direction: column;
@@ -93,18 +99,18 @@ export default {
   width: 900px;
   height: 650px;
   background-color: #eee;
-  border: 5px solid #ADC090;
+  border: 5px solid #adc090;
   border-radius: 10px;
   box-sizing: content-box;
 }
 
-.question{
+.question {
   justify-content: center;
   margin: 6% auto;
   font-size: 40px;
 }
 
-.question input{
+.question input {
   background-color: transparent;
   border: none;
   border: 1px solid #3d3d3d;
@@ -112,22 +118,22 @@ export default {
   margin: 10px;
   width: 40px;
   height: 50px;
-
 }
 
-.blocks{
+.blocks {
   display: flex;
   justify-content: center;
   margin-top: 8%;
 }
 
-.blocks .ditgit, .decile{
+.blocks .ditgit,
+.decile {
   border: 1px solid #000;
   border-radius: 10px;
   overflow: hidden;
 }
 
-.blocks .text{
+.blocks .text {
   text-align: center;
   writing-mode: vertical-lr;
   font-size: 30px;
@@ -136,11 +142,11 @@ export default {
   letter-spacing: 20px;
 }
 
-.blocks .text .spanTop{
+.blocks .text .spanTop {
   margin-bottom: 50px;
 }
 
-.blocks .control{
+.blocks .control {
   display: flex;
   text-align: center;
   padding-left: 10px;
@@ -148,11 +154,10 @@ export default {
   margin: 0 auto;
 }
 
-.blocks input{
+.blocks input {
   width: 70px;
   height: 60px;
-  border: none ;
+  border: none;
   border-top: 1px solid #000;
 }
-
 </style>

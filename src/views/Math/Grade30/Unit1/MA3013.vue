@@ -1,23 +1,43 @@
 <template>
   <div class="gameWindow">
-    <LevelButton @levelClick="changeCurrentLevel" :data="1" :currentNumber="currentLevel"></LevelButton>
+    <LevelButton
+      @levelClick="changeCurrentLevel"
+      :data="1"
+      :currentNumber="currentLevel"
+    ></LevelButton>
     <div class="board">
       <div class="left">
         <div class="column">
           <h5 v-for="i in 6">第 {{ i }} 行</h5>
         </div>
         <div class="blocks">
-          <div v-for="i in settings.width * settings.height" class="block" :style="blockCss(15, 20, blockColor[getColorId(i-1)])">
+          <div
+            v-for="i in settings.width * settings.height"
+            class="block"
+            :style="blockCss(15, 20, blockColor[getColorId(i - 1)])"
+          >
             <p class="number" v-if="isNumber(i)">{{ i }}</p>
             <div class="answer" v-if="isNumber(i) === false">
-              <input type="text" :id="i" v-model="userNumber[i]" 
-                    :class="[{ wrong: !checkNum(userNumber[i], i, 'wrong') }, { correct: checkNum(userNumber[i], i) }]"
-                    :disabled="checkNum(userNumber[i], i) && isOperate.indexOf(i) !== -1"
-                    @change="operate(i)">
+              <input
+                type="text"
+                :id="i"
+                v-model="userNumber[i]"
+                :class="[
+                  { wrong: !checkNum(userNumber[i], i, 'wrong') },
+                  { correct: checkNum(userNumber[i], i) },
+                ]"
+                :disabled="
+                  checkNum(userNumber[i], i) && isOperate.indexOf(i) !== -1
+                "
+                @change="operate(i)"
+              />
             </div>
             <div class="doorHandle"></div>
           </div>
-          <div class="bgc" :style="blockCss(15 * settings.width, 20 * settings.height)"></div>
+          <div
+            class="bgc"
+            :style="blockCss(15 * settings.width, 20 * settings.height)"
+          ></div>
         </div>
       </div>
       <div class="right">
@@ -25,36 +45,50 @@
           <li v-for="(question, qid) in data.questions">
             <h3 :id="'questionId-' + qid">{{ question }}</h3>
             <label class="ans" v-if="qid !== 0">答：</label>
-            <input v-model="answers[qid]" v-if="qid !== 0" :id="'answerId-' + qid">
+            <input
+              v-model="answers[qid]"
+              v-if="qid !== 0"
+              :id="'answerId-' + qid"
+            />
           </li>
         </ol>
       </div>
     </div>
-    <OptionButton :optionsActive="optionsActive" @optionsEvent="optionsEvent"></OptionButton>
+    <OptionButton
+      :optionsActive="optionsActive"
+      @optionsEvent="optionsEvent"
+    ></OptionButton>
   </div>
 </template>
 
 <script>
-import LevelButton from '@/components/LevelButton.vue';
-import OptionButton from '@/components/OptionButton.vue';
-import fetchJson from '@/utilitys/fetch-json.js';
+import LevelButton from "@/components/LevelButton.vue";
+import OptionButton from "@/components/OptionButton.vue";
+import fetchJson from "@/utilitys/fetch-json.js";
 
 export default {
-  name: 'MA3011',
+  name: "MA3013",
   components: {
     LevelButton,
     OptionButton,
   },
+  props: {
+    data: {
+      type: Object,
+      default: {
+        id: "MA3013",
+        questions: [],
+      },
+    },
+  },
   data() {
     return {
-      gameId: 'MA3011',
-      data: [
-      ],
+      gameId: "MA3011",
       currentLevel: 1,
       optionsActive: ["previous", "start", "next", "hint", "record", "submit"],
       settings: {
         width: 6,
-        height: 4
+        height: 4,
       },
       blockColor: ["#f7f4a3", "#fccd83", "#f47777", "#77b6f4"],
       notNumber: false,
@@ -65,10 +99,10 @@ export default {
         "先填完置物櫃的數字（用打字）",
         "紅色櫃子有什麼號碼？",
         "第 5 行有什麼號碼呢？",
-        "第 5 行上下兩個櫃子相差幾號？"
+        "第 5 行上下兩個櫃子相差幾號？",
       ],
       numbers: [12, 14, 17, 19, 21, 23],
-      answers: []
+      answers: [],
     };
   },
   methods: {
@@ -82,58 +116,49 @@ export default {
     },
     blockCss(w, h, color) {
       return {
-        width: w + '%',
-        height: h + '%',
-        backgroundColor: color
-      }
+        width: w + "%",
+        height: h + "%",
+        backgroundColor: color,
+      };
     },
     getColorId(id) {
-      let column = this.settings.width
-      let result = Math.floor(id / column)
+      let column = this.settings.width;
+      let result = Math.floor(id / column);
       return result;
     },
-    isNumber(number){
-      for(let j=0; j<6; j++){
-        if(this.numbers[j] == number){
-          return false
+    isNumber(number) {
+      for (let j = 0; j < 6; j++) {
+        if (this.numbers[j] == number) {
+          return false;
         }
       }
-      return true
+      return true;
     },
-    operate(id){
+    operate(id) {
       this.isOperate.push(id);
     },
-    checkNum(num, id, classNameId){
-      if(num == undefined){
-        if(classNameId == "wrong"){
-          return true
+    checkNum(num, id, classNameId) {
+      if (num == undefined) {
+        if (classNameId == "wrong") {
+          return true;
         }
-        return false
+        return false;
       }
-      for(let i=0; i<6; i++){
-        if(id == this.numbers[i]){
-          if(num == this.numbers[i]){
-            this.disableInput[id] = true
-            return true
+      for (let i = 0; i < 6; i++) {
+        if (id == this.numbers[i]) {
+          if (num == this.numbers[i]) {
+            this.disableInput[id] = true;
+            return true;
           }
-          return false
+          return false;
         }
       }
-    }
-  },
-  mounted() {
-    (async () => {
-      const res = await fetchJson('/math/grade30-game-info.json');
-      this.data = res.data.unit_1.filter((item) => {
-        return item.id === this.gameId;
-      })[0];
-      console.log(this.data);
-    })();
+    },
   },
 };
 </script>
 
-<style>
+<style scoped>
 .gameWindow {
   display: flex;
   flex-direction: column;
@@ -145,7 +170,7 @@ export default {
   width: 900px;
   height: 650px;
   background-color: #eee;
-  border: 5px solid #ADC090;
+  border: 5px solid #adc090;
   border-radius: 10px;
   box-sizing: content-box;
 }
@@ -294,5 +319,4 @@ h3 {
   font-size: 30px;
   line-height: 40px;
 }
-
 </style>

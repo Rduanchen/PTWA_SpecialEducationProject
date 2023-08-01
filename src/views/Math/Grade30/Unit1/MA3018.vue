@@ -1,6 +1,10 @@
 <template>
   <div class="gameWindow">
-    <LevelButton @levelClick="changeCurrentLevel" :data="1" :currentNumber="currentLevel"></LevelButton>
+    <LevelButton
+      @levelClick="changeCurrentLevel"
+      :data="1"
+      :currentNumber="currentLevel"
+    ></LevelButton>
     <div class="board">
       <div class="top">
         <div class="description">
@@ -23,65 +27,75 @@
         <ol>
           <li v-for="(question, qid) in data.questions">
             <h4>
-              {{ question }}（<input type="text" v-model="answers[qid]">）元
+              {{ question }}（<input type="text" v-model="answers[qid]" />）元
             </h4>
           </li>
         </ol>
       </div>
     </div>
-    <OptionButton :optionsActive="optionsActive" @optionsEvent="optionsEvent"></OptionButton>
+    <OptionButton
+      :optionsActive="optionsActive"
+      @optionsEvent="optionsEvent"
+    ></OptionButton>
   </div>
 </template>
 
 <script>
-import LevelButton from '@/components/LevelButton.vue';
-import OptionButton from '@/components/OptionButton.vue';
-import fetchJson from '@/utilitys/fetch-json.js';
+import LevelButton from "@/components/LevelButton.vue";
+import OptionButton from "@/components/OptionButton.vue";
+import fetchJson from "@/utilitys/fetch-json.js";
 
 export default {
-  name: 'MA3017',
+  name: "MA3018",
   components: {
     LevelButton,
     OptionButton,
   },
   data() {
     return {
-      gameId: 'MA3017',
+      gameId: "MA3017",
       data: {
         id: 123,
-        questions: []
+        questions: [],
       },
       currentLevel: 1,
       answers: [],
       optionsActive: ["previous", "start", "next", "hint", "record", "submit"],
       levels: 1,
-      blankContent:[
+      blankContent: [
         {
-          cities: '臺鐵嘉義',
-          prices: []
-        },{
-          cities: '頂六',
-          prices: ['12']
-        },{
-          cities: '吳鳳廟',
-          prices: ['20', '12']
-        },{
-          cities: '觸口',
-          prices: ['31', '18', '12']
-        },{
-          cities: '龍美',
-          prices: ['58', '43', '36', '25']
-        },{
-          cities: '嚴頭坪',
-          prices: ['71', '56', '48', '38', '13']
-        },{
-          cities: '奮起湖',
-          prices: ['87', '75', '67', '56', '30', '17']
-        },{
-          cities: '阿里山',
-          prices: ['120', '105', '98', '87', '62', '51', '49']
-        }
-      ]
+          cities: "臺鐵嘉義",
+          prices: [],
+        },
+        {
+          cities: "頂六",
+          prices: ["12"],
+        },
+        {
+          cities: "吳鳳廟",
+          prices: ["20", "12"],
+        },
+        {
+          cities: "觸口",
+          prices: ["31", "18", "12"],
+        },
+        {
+          cities: "龍美",
+          prices: ["58", "43", "36", "25"],
+        },
+        {
+          cities: "嚴頭坪",
+          prices: ["71", "56", "48", "38", "13"],
+        },
+        {
+          cities: "奮起湖",
+          prices: ["87", "75", "67", "56", "30", "17"],
+        },
+        {
+          cities: "阿里山",
+          prices: ["120", "105", "98", "87", "62", "51", "49"],
+        },
+      ],
     };
   },
   methods: {
@@ -92,11 +106,11 @@ export default {
     optionsEvent(option) {
       console.log(option);
       // 請在這裡寫開始遊戲、上一關、下一關等等等的邏輯
-    }
+    },
   },
   mounted() {
     (async () => {
-      const res = await fetchJson('/math/grade30-game-info.json');
+      const res = await fetchJson("/math/grade30-game-info.json");
       this.data = res.data.unit_7.filter((item) => {
         return item.id === this.gameId;
       })[0];
@@ -106,7 +120,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .gameWindow {
   display: flex;
   flex-direction: column;
@@ -119,28 +133,28 @@ export default {
   width: 900px;
   height: 650px;
   background-color: #eee;
-  border: 5px solid #ADC090;
+  border: 5px solid #adc090;
   border-radius: 10px;
   box-sizing: content-box;
 }
 
-.board .top{
+.board .top {
   margin: 0;
   padding: 0;
 }
 
-.board .blanks{
+.board .blanks {
   position: relative;
   top: 15%;
   display: flex;
   justify-content: center;
 }
 
-.top h3{
+.top h3 {
   font-weight: bold;
 }
 
-.description{
+.description {
   position: absolute;
   top: 7%;
   right: 6%;
@@ -151,7 +165,8 @@ table {
   border-collapse: collapse;
 }
 
-th, td{
+th,
+td {
   padding: 0;
   border: 1.5px #525152 solid;
   text-align: center;
@@ -163,15 +178,16 @@ th {
   background: #9cc1dd;
 }
 
-td.name{
+td.name {
   font-weight: bold;
 }
 
-.blanks .name{
+.blanks .name {
   width: 100px;
 }
 
-b, em {
+b,
+em {
   font-size: 17px;
 }
 
@@ -184,18 +200,18 @@ b, em {
   width: 55px;
 }
 
-.board .bottom{
+.board .bottom {
   position: absolute;
   bottom: 3%;
   left: 3%;
 }
 
-.bottom h4{
+.bottom h4 {
   margin: 0;
   margin-bottom: 30px;
 }
 
-.bottom input{
+.bottom input {
   border: none;
   background-color: transparent;
   width: 60px;
@@ -204,16 +220,16 @@ b, em {
   margin-top: 5px;
 }
 
-.bottom input:focus{
+.bottom input:focus {
   border: none;
   outline: none;
 }
 
-.bottom input:hover{
+.bottom input:hover {
   cursor: pointer;
 }
 
-ol li::marker{
+ol li::marker {
   font-size: 24px;
 }
 </style>

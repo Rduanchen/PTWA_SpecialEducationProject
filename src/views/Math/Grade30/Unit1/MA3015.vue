@@ -1,44 +1,53 @@
 <template>
   <div class="gameWindow">
-    <LevelButton @levelClick="changeCurrentLevel" :data="3" :currentNumber="currentLevel"></LevelButton>
+    <LevelButton
+      @levelClick="changeCurrentLevel"
+      :data="3"
+      :currentNumber="currentLevel"
+    ></LevelButton>
     <div class="board">
       <div class="description">
-        <h2> {{ description[0] }} </h2>
+        <h2>{{ description[0] }}</h2>
       </div>
       <div class="question">
         <div class="level1" v-if="currentLevel === 1">
           <span v-if="data"> {{ data.questions[0] }} </span>
-          <input type="text" style="text-align:center">
+          <input type="text" style="text-align: center" />
           <span>個圖釘</span>
         </div>
       </div>
       <div class="blocks">
-        <img src="./assets/MA3015_pin.png" alt="">
+        <img src="./assets/MA3015_pin.png" alt="" />
       </div>
     </div>
-    <OptionButton :optionsActive="optionsActive" @optionsEvent="optionsEvent"></OptionButton>
+    <OptionButton
+      :optionsActive="optionsActive"
+      @optionsEvent="optionsEvent"
+    ></OptionButton>
   </div>
 </template>
 
 <script>
-import LevelButton from '@/components/LevelButton.vue';
-import OptionButton from '@/components/OptionButton.vue';
-import fetchJson from '@/utilitys/fetch-json.js';
+import LevelButton from "@/components/LevelButton.vue";
+import OptionButton from "@/components/OptionButton.vue";
+import fetchJson from "@/utilitys/fetch-json.js";
 
 export default {
-  name: 'MA3014',
+  name: "MA3015",
   components: {
     LevelButton,
     OptionButton,
   },
   data() {
     return {
-      gameId: 'MA3014',
+      gameId: "MA3014",
       data: null,
       currentLevel: 1,
       optionsActive: ["previous", "start", "next", "hint", "record", "submit"],
       levels: 3,
-      description: ["老師把圖畫用圖釘固定，由左到右排成一排，每一張和下一張共用 1 個圖釘"]
+      description: [
+        "老師把圖畫用圖釘固定，由左到右排成一排，每一張和下一張共用 1 個圖釘",
+      ],
     };
   },
   methods: {
@@ -50,14 +59,14 @@ export default {
       console.log(option);
       // 請在這裡寫開始遊戲、上一關、下一關等等等的邏輯
     },
-    getQuestion(level){
-      let qid = Math.floor(Math.random() * 5)
-      return this.data.questions[level][qid]
+    getQuestion(level) {
+      let qid = Math.floor(Math.random() * 5);
+      return this.data.questions[level][qid];
     },
   },
   mounted() {
     (async () => {
-      const res = await fetchJson('/math/grade30-game-info.json');
+      const res = await fetchJson("/math/grade30-game-info.json");
       this.data = res.data.unit_4.filter((item) => {
         return item.id === this.gameId;
       })[0];
@@ -67,7 +76,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .gameWindow {
   display: flex;
   flex-direction: column;
@@ -80,18 +89,18 @@ export default {
   width: 900px;
   height: 650px;
   background-color: #eee;
-  border: 5px solid #ADC090;
+  border: 5px solid #adc090;
   border-radius: 10px;
   box-sizing: content-box;
 }
 
-.question{
+.question {
   justify-content: center;
   margin: 6% auto;
   font-size: 40px;
 }
 
-.question input{
+.question input {
   background-color: transparent;
   border: none;
   border: 1px solid #3d3d3d;
@@ -99,22 +108,22 @@ export default {
   margin: 10px;
   width: 40px;
   height: 50px;
-
 }
 
-.blocks{
+.blocks {
   display: flex;
   justify-content: center;
   margin-top: 8%;
 }
 
-.blocks .ditgit, .decile{
+.blocks .ditgit,
+.decile {
   border: 1px solid #000;
   border-radius: 10px;
   overflow: hidden;
 }
 
-.blocks .text{
+.blocks .text {
   text-align: center;
   writing-mode: vertical-lr;
   font-size: 30px;
@@ -123,11 +132,11 @@ export default {
   letter-spacing: 20px;
 }
 
-.blocks .text .spanTop{
+.blocks .text .spanTop {
   margin-bottom: 50px;
 }
 
-.blocks .control{
+.blocks .control {
   display: flex;
   text-align: center;
   padding-left: 10px;
@@ -135,11 +144,10 @@ export default {
   margin: 0 auto;
 }
 
-.blocks input{
+.blocks input {
   width: 70px;
   height: 60px;
-  border: none ;
+  border: none;
   border-top: 1px solid #000;
 }
-
 </style>

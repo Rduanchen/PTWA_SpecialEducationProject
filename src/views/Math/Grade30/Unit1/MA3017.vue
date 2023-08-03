@@ -80,13 +80,18 @@ export default {
     LevelButton,
     OptionButton,
   },
-  data() {
-    return {
-      gameId: "MA3016",
-      data: {
-        id: 123,
+  props: {
+    data: {
+      type: Object,
+      default: {
+        id: "MA3017",
         questions: [],
       },
+    },
+  },
+  data() {
+    return {
+      gameId: "MA3017",
       currentLevel: 1,
       answers: [],
       optionsActive: ["previous", "start", "next", "hint", "record", "submit"],
@@ -159,15 +164,6 @@ export default {
       console.log(option);
       // 請在這裡寫開始遊戲、上一關、下一關等等等的邏輯
     },
-  },
-  mounted() {
-    (async () => {
-      const res = await fetchJson("/math/grade30-game-info.json");
-      this.data = res.data.unit_6.filter((item) => {
-        return item.id === this.gameId;
-      })[0];
-      console.log(this.data);
-    })();
   },
 };
 </script>

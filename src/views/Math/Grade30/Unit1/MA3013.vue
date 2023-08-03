@@ -83,7 +83,7 @@ export default {
   },
   data() {
     return {
-      gameId: "MA3011",
+      gameId: "MA3013",
       currentLevel: 1,
       optionsActive: ["previous", "start", "next", "hint", "record", "submit"],
       settings: {
@@ -95,12 +95,6 @@ export default {
       disableInput: [],
       isOperate: [],
       userNumber: [],
-      questions: [
-        "先填完置物櫃的數字（用打字）",
-        "紅色櫃子有什麼號碼？",
-        "第 5 行有什麼號碼呢？",
-        "第 5 行上下兩個櫃子相差幾號？",
-      ],
       numbers: [12, 14, 17, 19, 21, 23],
       answers: [],
     };
@@ -112,6 +106,19 @@ export default {
     },
     optionsEvent(option) {
       console.log(option);
+      switch (option) {
+        case 'hint':
+          console.log('Oranges are $0.59 a pound.');
+          break;
+        case 'record':
+          console.log('Oranges are $0.59 a pound.');
+          break;
+        case 'submit':
+          console.log('Mangoes and papayas are $2.79 a pound.');
+          break;
+        default:
+          console.log(`Sorry, we are out of ${expr}.`);
+      }
       // 請在這裡寫開始遊戲、上一關、下一關等等等的邏輯
     },
     blockCss(w, h, color) {

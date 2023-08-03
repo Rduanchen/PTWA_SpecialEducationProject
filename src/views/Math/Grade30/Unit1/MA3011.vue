@@ -62,7 +62,7 @@ export default {
   },
   data() {
     return {
-      gameId: "MA3017",
+      gameId: "MA3011",
       currentLevel: 1,
       answers: [],
       optionsActive: ["previous", "start", "next", "hint", "record", "submit"],

@@ -38,9 +38,18 @@ export default {
     LevelButton,
     OptionButton,
   },
+  props: {
+    data: {
+      type: Object,
+      default: {
+        id: "MA3015",
+        questions: [],
+      },
+    },
+  },
   data() {
     return {
-      gameId: "MA3014",
+      gameId: "MA3015",
       data: null,
       currentLevel: 1,
       optionsActive: ["previous", "start", "next", "hint", "record", "submit"],
@@ -63,15 +72,6 @@ export default {
       let qid = Math.floor(Math.random() * 5);
       return this.data.questions[level][qid];
     },
-  },
-  mounted() {
-    (async () => {
-      const res = await fetchJson("/math/grade30-game-info.json");
-      this.data = res.data.unit_4.filter((item) => {
-        return item.id === this.gameId;
-      })[0];
-      console.log(this.data.questions);
-    })();
   },
 };
 </script>

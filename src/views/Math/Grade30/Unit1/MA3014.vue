@@ -8,14 +8,14 @@
     <div class="board">
       <div class="question">
         <div class="level1" v-if="currentLevel === 1">
-          <span v-if="data"> {{ getQuestion(currentLevel - 1) }} 是</span>
+          <span> {{ getQuestion(currentLevel - 1) }} 是</span>
           <input type="text" style="text-align: center" />
           <span>個 1 和</span>
           <input type="text" style="text-align: center" />
           <span>個 0.1 合起來的</span>
         </div>
         <div class="level234" v-if="currentLevel >= 2">
-          <span v-if="data"> {{ getQuestion(currentLevel - 1) }} </span>
+          <span> {{ getQuestion(currentLevel - 1) }} </span>
           <input type="text" />
         </div>
       </div>
@@ -51,10 +51,18 @@ export default {
     LevelButton,
     OptionButton,
   },
+  props: {
+    data: {
+      type: Object,
+      default: {
+        id: "MA3014",
+        questions: [],
+      },
+    },
+  },
   data() {
     return {
-      gameId: "MA3013",
-      data: null,
+      gameId: "MA3014",
       currentLevel: 1,
       optionsActive: ["previous", "start", "next", "hint", "record", "submit"],
       levels: 4,
@@ -73,15 +81,6 @@ export default {
       let qid = Math.floor(Math.random() * 5);
       return this.data.questions[level][qid];
     },
-  },
-  mounted() {
-    (async () => {
-      const res = await fetchJson("/math/grade30-game-info.json");
-      this.data = res.data.unit_3.filter((item) => {
-        return item.id === this.gameId;
-      })[0];
-      console.log(this.data.questions);
-    })();
   },
 };
 </script>

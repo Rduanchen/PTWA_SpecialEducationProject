@@ -40,183 +40,130 @@
         </div>
       </nav>
     </header>
-
-    <div class="container-fluid">
-      <div class="row main-menu">
-        <div class="col-12 col-md-4">
-          <a class="link-block" data-toggle="collapse" href="#menu1" role="button" aria-expanded="false" aria-controls="menu1">
-            <img src="@/assets/images/grade_btn/mand.png" class="img-fluid" />
-          </a>
-        </div>
-        <div class="col-12 col-md-4">
-          <a class="link-block" data-toggle="collapse" href="#menu2" role="button" aria-expanded="false" aria-controls="menu2">
-            <img src="@/assets/images/grade_btn/math.png" class="img-fluid" :class="{ active: activeMenu === 'menu2' }" />
-          </a>
-        </div>
-        <div class="col-12 col-md-4">
-          <a class="link-block" data-toggle="collapse" href="#menu3" role="button" aria-expanded="false" aria-controls="menu3">
-            <img src="@/assets/images/grade_btn/tech.png" class="img-fluid" :class="{ active: activeMenu === 'menu3' }" />
-          </a>
-        </div>
+  </div>
+  <header class="header container-fluid">
+    <div class="container d-flex align-items-center justify-content-start h-100 mb-5">
+      <div class="text-end text-white content">
+        <p class="h1">網站名稱</p>
+        <p class="h2">用遊戲翻轉教育，在遊戲中成長</p>
       </div>
+    </div>
+  </header>
 
-      <div class="row submenus">
-        <div class="col-12">
-          <div id="menu1" class="collapse multi-collapse">
-            <div class="row">
-              <div class="col">
-                <a href="#" class="submenu-link-block"><img src="@/assets/images/grade_btn/grade1-3.png" class="img-fluid" ></a>
-              </div>
-              <div class="col">
-                <a href="#" class="submenu-link-block"><img src="@/assets/images/grade_btn/grade2-3.png" class="img-fluid" ></a>
-              </div>
-              <div class="col">
-                <a href="#" class="submenu-link-block"><img src="@/assets/images/grade_btn/grade3-3.png" class="img-fluid" ></a>
-              </div>
-              <div class="col">
-                <a href="#" class="submenu-link-block"><img src="@/assets/images/grade_btn/grade4-3.png" class="img-fluid" ></a>
-              </div>
-              <div class="col">
-                <a href="#" class="submenu-link-block"><img src="@/assets/images/grade_btn/grade5-3.png" class="img-fluid" ></a>
-              </div>
-              <div class="col">
-                <a href="#" class="submenu-link-block"><img src="@/assets/images/grade_btn/grade6-3.png" class="img-fluid" ></a>
-              </div>
+  <section class="container mt-5 mb-5 d-flex justify-content-center">
+    <div class="row">
+      <div class="col-6">
+        <img src="../assets/images/pics/cover_story.png" style="object-fit: cover;" class="w-100" width="400">
+      </div>
+      <div class="col-6 d-flex flex-column justify-content-center ">
+        <div class="row d-flex justify-content-start align-content-start flex-column">
+          <p class="h1">請選擇年級</p>
+          <p>選擇年級以及進入遊戲</p>
+        </div>
+        <div class="row GradeSelectMenu">
+          <div class="col-2">
+            <router-link :to="{ name: 'GameSelect' }" alt="一年遊戲" class="submenu-link-block">
+              <img src="@/assets/images/grade_btn/grade1-3.png" class="img-fluid" >
+            </router-link>
           </div>
+          <div class="col-2">
+            <router-link :to="{ name: 'GameSelect' }" alt="二年遊戲" class="submenu-link-block">
+              <img src="@/assets/images/grade_btn/grade2-3.png" class="img-fluid" >
+            </router-link>
           </div>
-          <div id="menu2" class="collapse multi-collapse">
-            <div class="row">
-              <div class="col">
-                <a href="#" alt="數學一上遊戲" class="submenu-link-block"><img src="@/assets/images/grade_btn/grade1.png" class="img-fluid" ></a>
-              </div>
-              <div class="col">
-                <a href="#" class="submenu-link-block"><img src="@/assets/images/grade_btn/grade2.png" class="img-fluid" ></a>
-              </div>
-              <div class="col">
-                <router-link :to="{ name: 'MA30' }" alt="數學三上遊戲" class="submenu-link-block">
-                  <img src="@/assets/images/grade_btn/grade3.png" class="img-fluid" ></router-link>
-              </div>
-              <div class="col">
-                <a href="#" class="submenu-link-block"><img src="@/assets/images/grade_btn/grade4.png" class="img-fluid" ></a>
-              </div>
-              <div class="col">
-                <a href="#" class="submenu-link-block"><img src="@/assets/images/grade_btn/grade5.png" class="img-fluid" ></a>
-              </div>
-              <div class="col">
-                <a href="#" class="submenu-link-block"><img src="@/assets/images/grade_btn/grade6.png" class="img-fluid" ></a>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col">
-                <a href="#" class="submenu-link-block"><img src="@/assets/images/grade_btn/grade1-2.png" class="img-fluid" ></a>
-              </div>
-              <div class="col">
-                <a href="#" class="submenu-link-block"><img src="@/assets/images/grade_btn/grade2-2.png" class="img-fluid" ></a>
-              </div>
-              <div class="col">
-                <a href="#" class="submenu-link-block"><img src="@/assets/images/grade_btn/grade3-2.png" class="img-fluid" ></a>
-              </div>
-              <div class="col">
-                <a href="#" class="submenu-link-block"><img src="@/assets/images/grade_btn/grade4-2.png" class="img-fluid" ></a>
-              </div>
-              <div class="col">
-                <a href="#" class="submenu-link-block"><img src="@/assets/images/grade_btn/grade5-2.png" class="img-fluid" ></a>
-              </div>
-              <div class="col">
-                <a href="#" class="submenu-link-block"><img src="@/assets/images/grade_btn/grade6-2.png" class="img-fluid" ></a>
-              </div>
-            </div>
+          <div class="col-2">
+            <router-link :to="{ name: 'GameSelect' }" alt="三年遊戲" class="submenu-link-block">
+              <img src="@/assets/images/grade_btn/grade3-3.png" class="img-fluid" >
+            </router-link>
           </div>
-          <div id="menu3" class="collapse multi-collapse">
-            <div class="row">
-              <div class="col">
-                <a href="#" alt="科技一年級" class="submenu-link-block"><img src="@/assets/images/grade_btn/grade1-3.png" class="img-fluid" ></a>
-              </div>
-              <div class="col">
-                <a href="#" class="submenu-link-block"><img src="@/assets/images/grade_btn/grade2-3.png" class="img-fluid" ></a>
-              </div>
-              <div class="col">
-                <a href="#" class="submenu-link-block"><img src="@/assets/images/grade_btn/grade3-3.png" class="img-fluid" ></a>
-              </div>
-              <div class="col">
-                <a href="#" class="submenu-link-block"><img src="@/assets/images/grade_btn/grade4-3.png" class="img-fluid" ></a>
-              </div>
-              <div class="col">
-                <a href="#" class="submenu-link-block"><img src="@/assets/images/grade_btn/grade5-3.png" class="img-fluid" ></a>
-              </div>
-              <div class="col">
-                <a href="#" class="submenu-link-block"><img src="@/assets/images/grade_btn/grade6-3.png" class="img-fluid" ></a>
-              </div>
-            </div>
+          <div class="col-2">
+            <router-link :to="{ name: 'GameSelect' }" alt="四年遊戲" class="submenu-link-block">
+              <img src="@/assets/images/grade_btn/grade4-3.png" class="img-fluid" >
+            </router-link>
+          </div>
+          <div class="col-2">
+            <router-link :to="{ name: 'GameSelect' }" alt="五年遊戲" class="submenu-link-block">
+              <img src="@/assets/images/grade_btn/grade5-3.png" class="img-fluid" >
+            </router-link>
+          </div>
+          <div class="col-2">
+            <router-link :to="{ name: 'GameSelect' }" alt="六年遊戲" class="submenu-link-block">
+              <img src="@/assets/images/grade_btn/grade6-3.png" class="img-fluid" >
+            </router-link>
           </div>
         </div>
       </div>
     </div>
-  </div>
+  </section>
+
+  <!--NF 頁尾設定 -->
+  <section class="">
+  <footer class="text-center text-white" style="background-color: #0a4275;">
+    <!-- Copyright -->
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+      © 2023 Copyright:
+      <a class="text-white" href="https://programtheworld.tw/">programtheworld.tw</a>
+    </div>
+    <!-- Copyright -->
+  </footer>
+  <!-- Footer -->
+</section>
+ 
 </template>
 
 <script>
 export default {
-  data() {
-    return {
-      activeMenu: null,
-    };
-  },
-  methods: {
-    toggleMenu(menuId) {
-      if (this.activeMenu === menuId) {
-        this.activeMenu = null;
-      } else {
-        this.activeMenu = menuId;
-      }
-      console.log(this.activeMenu)
-    },
-  },
-  mounted() {
-    let collapseElements = document.querySelectorAll('.multi-collapse');
-    
-    collapseElements.forEach((collapseEl) => {
-      collapseEl.addEventListener('show.bs.collapse', () => {
-        collapseElements.forEach((otherCollapseEl) => {
-          if (otherCollapseEl !== collapseEl) {
-            otherCollapseEl.classList.remove('show');
-          }
-        });
-      });
-    });
-  },
+ 
 };
 </script>
 
-<style>
-body {
-    background-image: url('@/assets/images/grade_btn/bg.png');
-}
+<style lang="scss">
 
 .navbar {
-    background-color: #57B9D9; 
-    height: 90px; 
-    width: 100%; 
-    margin: 0;
+  background-color: #57B9D9; 
+  height: 90px; 
+  width: 100%; 
+  margin: 0;
 }
 
-.link-block {
-    display: block;
-    margin-top: 35px;
-}   
 
-.submenus {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+.header {
+  display: flex;
+  height: 90vh;
+  position: relative; 
 }
 
-.submenu-link-block {
-    display: flex;
-    color: white;
-    margin: 5px;
-    flex-wrap: wrap;
-    justify-content: center;
-    padding-top: 20px;
+.header::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url(../assets/images/pics/cover_info.jpeg);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  filter: brightness(50%);
+  z-index: -1; /* 確保背景圖片位於內容之後 */
+}
+.content {
+  z-index: 1; /* 將這個元素放置於 ::before 元素上方 */
+}
+
+
+.GradeSelectMenu {
+  .col-2 {  
+    transition: transform 0.3s ease;
+    img {
+      transition: transform 0.3s ease;
+    }
+    &:hover {
+      transform: scale(1.1);
+      img {
+        transform: scale(1.1);
+      }
+    }
+  }
 }
 </style>

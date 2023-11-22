@@ -1,7 +1,7 @@
-import { createRouter, createWebHistory } from "vue-router";
+import { createRouter, createWebHashHistory } from "vue-router";
 
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
+  history: createWebHashHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: "/",
@@ -9,6 +9,14 @@ const router = createRouter({
       meta: { requiresAuth: false },
       component: () => import("@/views/index.vue"),
     },
+    //將遊戲選擇整合至一個頁面
+    {
+      path: "/GameSelect",
+      name: "GameSelect",
+      meta: { requiresAuth: false },
+      component: () => import("@/views/GameSelect.vue"),
+    },
+    
     // {
     //   path: '/chinese',
     //   name: 'Chinese',
@@ -64,12 +72,6 @@ const router = createRouter({
         },
       ],
     },
-    // {
-    //   path: '/technology',
-    //   name: 'Technology',
-    //   meta: { requiresAuth: false },
-    //   component: () => import('@/views/Technology')
-    // },
   ],
 });
 

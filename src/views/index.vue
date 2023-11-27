@@ -3,7 +3,7 @@
     <header>
       <nav class="navbar navbar-expand-md navbar-dark sticky-top">
         <div class="container-fluid" style="width: 100%;">
-          <a class="navbar-brand" href="https://ptwa-npo.github.io/" alt="Home">
+          <a class="navbar-brand" href="#" alt="Home">
             <img src="@/assets/images/nav_bar/logo.png" class="img-fluid" style="max-width: 90%;" />
           </a>
           <div class="collapse navbar-collapse sticky-top" id="navbarSupportedContent">
@@ -62,32 +62,32 @@
         </div>
         <div class="row GradeSelectMenu">
           <div class="col-2">
-            <router-link :to="{ name: 'GameSelect' }" alt="一年遊戲" class="submenu-link-block">
-              <img src="@/assets/images/grade_btn/grade1-3.png" class="img-fluid" >
+            <router-link :to="{ name: 'GameSelect', params: { id: 1 } }" class="submenu-link-block">
+              <img src="@/assets/images/grade_btn/grade1-3.png" class="img-fluid" alt="一年遊戲">
             </router-link>
           </div>
           <div class="col-2">
-            <router-link :to="{ name: 'GameSelect' }" alt="二年遊戲" class="submenu-link-block">
+            <router-link :to="{ name: 'GameSelect', params: { id: 2 } }" alt="二年遊戲" class="submenu-link-block">
               <img src="@/assets/images/grade_btn/grade2-3.png" class="img-fluid" >
             </router-link>
           </div>
           <div class="col-2">
-            <router-link :to="{ name: 'GameSelect' }" alt="三年遊戲" class="submenu-link-block">
+            <router-link :to="{ name: 'GameSelect', params: { id: 3 } }" alt="三年遊戲" class="submenu-link-block">
               <img src="@/assets/images/grade_btn/grade3-3.png" class="img-fluid" >
             </router-link>
           </div>
           <div class="col-2">
-            <router-link :to="{ name: 'GameSelect' }" alt="四年遊戲" class="submenu-link-block">
+            <router-link :to="{ name: 'GameSelect', params: { id: 4 } }" alt="四年遊戲" class="submenu-link-block">
               <img src="@/assets/images/grade_btn/grade4-3.png" class="img-fluid" >
             </router-link>
           </div>
           <div class="col-2">
-            <router-link :to="{ name: 'GameSelect' }" alt="五年遊戲" class="submenu-link-block">
+            <router-link :to="{ name: 'GameSelect', params: { id: 5 } }" alt="五年遊戲" class="submenu-link-block">
               <img src="@/assets/images/grade_btn/grade5-3.png" class="img-fluid" >
             </router-link>
           </div>
           <div class="col-2">
-            <router-link :to="{ name: 'GameSelect' }" alt="六年遊戲" class="submenu-link-block">
+            <router-link :to="{ name: 'GameSelect', params: { id: 6 } }" alt="六年遊戲" class="submenu-link-block">
               <img src="@/assets/images/grade_btn/grade6-3.png" class="img-fluid" >
             </router-link>
           </div>
@@ -113,7 +113,7 @@
 
 <script>
 export default {
- 
+
 };
 </script>
 
@@ -121,9 +121,18 @@ export default {
 
 .navbar {
   background-color: #57B9D9; 
-  height: 90px; 
+  height: 10vh; 
   width: 100%; 
   margin: 0;
+  .navbar-brand {
+    img{
+        max-width: 70%
+    }
+  }
+  img {
+    max-width: 80%;
+  }
+  
 }
 
 

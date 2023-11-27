@@ -7,6 +7,7 @@ import { RouterView } from 'vue-router'
 </template>
 
 <script>
+import fetchJson from '@/utilitys/fetch-json.js';
 export default {
   name: 'App',
 };

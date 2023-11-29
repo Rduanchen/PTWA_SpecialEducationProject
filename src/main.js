@@ -7,6 +7,8 @@ import "bootstrap/dist/js/bootstrap.min.js";
 import "bootstrap";
 import 'bootstrap-icons/font/bootstrap-icons.css';
 
+// import "./assets/MyVariable.scss";
+
 const app = createApp(App)
 
 app.use(router)

@@ -4,100 +4,90 @@
 
 <template>
     <header>
-      <nav class="navbar navbar-expand-md navbar-dark sticky-top">
-        <div class="container-fluid" style="width: 100%;">
-          <a class="navbar-brand" href="#" alt="Home">
-            <img src="@/assets/images/nav_bar/logo.png" class="img-fluid" />
-          </a>
-          <div class="collapse navbar-collapse sticky-top" id="navbarSupportedContent">
-            <ul class="navbar-nav ms-auto mb-2 navbar-nav-scroll">
-              <!-- <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="https://programtheworld.tw/donate/donate" alt="捐款" target="_blank">
-                  <div class="nav1">
-                    <img src="@/assets/images/nav_bar/donate.png" class="img-fluid" />
-                  </div>
-                </a>
-              </li> -->
-              <li class="nav-item">
-                <!-- <a class="nav-link" href="#grade-title" alt="遊戲">
-                  <img src="@/assets/images/nav_bar/sharing.png" class="img-fluid" />
-                  
-                </a> -->
-                <!-- <p class="h1">數學</p> -->
-                <a class="nav-link h1" onclick="ChangeSubject('Math')">數學</a>
-              </li>
-              <li class="nav-item">
-                <!-- <a class="nav-link" href="https://programtheworld.tw/works/index" alt="耕耘" target="_blank">
-                  <img src="@/assets/images/nav_bar/effort.png" class="img-fluid" />                  
-                </a> -->
-                <!-- <p class="h1">國語</p> -->
-                <a class="nav-link h1" onclick="ChangeSubject('Chinese')">國語</a>
-              </li>
-              <li class="nav-item">
-                <!-- <a class="nav-link" href="https://programtheworld.tw/about/about?pagetarget=us" alt="關於" target="_blank">
-                  <img src="@/assets/images/nav_bar/about2.png" class="img-fluid" />                  
-                </a> -->
-                <!-- <p class="h1">自然科技</p> -->
-                <a class="nav-link h1" onclick="ChangeSubject('Technology')">自然科技</a>
-              </li>
-              <!-- <li class="nav-item">
-                <a class="nav-link" href="https://www.facebook.com/program.the.world" alt="facebook" target="_blank">
-                  <img src="@/assets/images/nav_bar/facebook.png" class="img-fluid" />
-                </a>
-              </li> -->
-            </ul>
+      <nav class="container navbar navbar-expand-md navbar-dark sticky-top">
+        <div class="container-fluid d-flex flex-column justify-content-start align-items-start" style="width: 100%;">
+          <div class="d-flex justify-content-start align-items-center flex-row w-100">
+            <a class="navbar-brand" href="#" alt="Home">
+              <img src="@/assets/images/nav_bar/logo.png" class="img-fluid" />
+            </a>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav navbar-nav-scroll">
+                <li class="nav-item">
+                  <a class="nav-link h1" @click="ChangeSubject('Math')">數學</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link h1" @click="ChangeSubject('Chinese')">國語</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link h1" @click="ChangeSubject('Technology')">多元科技</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="w-100">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="#">主頁</a></li>
+              <li class="breadcrumb-item active" aria-current="page">{{Subjects[Subject]}}</li>
+            </ol>
           </div>
         </div>
       </nav>
-      <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="#">主頁</a></li>
-          <li class="breadcrumb-item active" aria-current="page">{{Subjects[Subject]}}</li>
-        </ol>
-      </nav>
 
     </header>
-
-    <section class="GameSelectSection mt-4">
-        <div class="container-fluid">
+    <section class="GameSelectSection" style="overflow-y: hidden;">
+        <div class="container">
             <div class="row">
-                <div class="col-3 SideBar">
+                <div class="col-3 SideBar mt-4">
                     <div class="card">
-                    <div class="card-body">
+                    <div class="card-body" :key="Refresh">
                         <h5 class="card-title mt-2">請選擇科目</h5>
                         <div class="list-group mt-2" v-for="(items,key) in ShowInfo[Subject]" v-if="ShowInfo">
                           <a class="list-group-item list-group-item-action" v-on:click="SelectChapter(key)">{{ items.Title }}</a>
                         </div>
-                      
                     </div>
                   </div>
                 </div>
-                <!-- NF 以for渲染-->
-                <div class="col-9 container-fluid ItemFrame" v-if="a">
-                  <div class="card Charpter mb-4 px-0">
-                    <div class="card-body" v-for="items in ShowInfo[Subject][SelectedChapter].Section" v-if="ShowInfo">
+                <!-- NF img 的屬性需要修正 fs-->
+                <div class="col-8 container ItemFrame mt-4" v-if="Show" :key="Refresh">
+                  <div class="card Charpter mb-4 px-0" v-for="items in ShowInfo[Subject][SelectedChapter].Section" v-if="ShowInfo">
+                  <div class="card-body">
                       <h5 class="card-title mb-3">{{ items.Title }}</h5>
-                      <div class="row flex" style="overflow-x: auto;">
-                        <div v-for="item in items.Games" class="col-md-3">
-                          <div class="card GameCard mx-2 mb-2" style="width: 200px !important;">
-                            <div class="card-body">
+                      <div class="row" style="overflow-x: auto;">
+
+                        <!-- <div v-for="item in items.Games" class="d-flex flex-row justify-content-start align-self-stretch flex-nowrap">
+                          <div class="card GameCard mx-2 mb-2 flex-fill ">
+                          <div class="card-body">
                               <img src="../assets/images/pics/cover_info.jpeg" class="card-img-top" alt="...">
-                              <p class="h5 card-title mt-2">{{item.Name}}</p>
+                              <router-link :to="{ name:'Game',params:{ id:item.id, Grade:this.ShowGrade, Subject: this.Subject } }">
+                                <p class="h5 card-title mt-2">{{item.Name}}</p>
+                              </router-link>
                               <p class="card-text">{{ item.Description }}</p>
+                          </div>
+                          </div>
+                        </div> -->
+                        <div class="row">
+                          <div v-for="item in items.Games" class="col-12 col-md-6 col-lg-4">
+                            <div class="card GameCard">
+                              <div class="card-body">
+                                <img src="../assets/images/pics/cover_info.jpeg" class="card-img-top" alt="...">
+                                <router-link :to="{ name: 'Game', params: { id: item.id, Grade: this.ShowGrade, Subject: this.Subject } }">
+                                  <p class="h5 card-title mt-2">{{ item.Name }}</p>
+                                </router-link>
+                                <p class="card-text">{{ item.Description }}</p>
+                              </div>
                             </div>
                           </div>
                         </div>
                       </div>
-                    </div>
+                  </div>
                   </div>
                 </div>
-
             </div>
         </div> 
     </section>
 </template>
 
-<script>
+<script type="Model">
 import fetchJson from '@/utilitys/fetch-json.js';
 import { setTransitionHooks } from 'vue';
 export default {
@@ -112,7 +102,8 @@ export default {
         Technology: "多元科技",
       },
       SelectedChapter: null,
-      a:false
+      Show:false,
+      Refresh: 0,
       //定義科目種類
     };
   },
@@ -129,21 +120,28 @@ export default {
     SelectChapter(key){
       this.SelectedChapter = String(key);
       console.log(this.SelectedChapter);
-      this.a = true;
+      this.Show = true;
     },
     ChangeSubject(Subject){
       this.Subject = Subject;
+      this.Refresh += 1;
+      this.Show = false;
+      this.$forceUpdate();
+      console.log(this.Subject);
     }
   },
 }
 </script>
 
-<style scope lang="scss">
+<style lang="scss" scoped>
+
+header{
+  background-color: #F19C79
+}
 .navbar {
-  background-color: #57B9D9; 
-  height: 10vh; 
-  width: 100%; 
-  margin: 0;
+  background-color: #F19C79; 
+  height: 15vh; 
+  // width: 100%;
   .navbar-brand {
     img{
         max-width: 70%
@@ -151,24 +149,27 @@ export default {
   }
   img {
     max-width: 80%;
-  }
-  
+  } 
 }
 .ItemFrame {
-    height: 550px;
-    overflow-y: auto;
-    -ms-overflow-style: none; /* IE/Edge */
+  height: 83dvh;
+  overflow-y: scroll;
+  // -ms-overflow-style: none; /* IE/Edge */
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 .SideBar {
-    // border-radius: 5%;
-    // border: 1px solid black;
-    height: 550px; 
-    overflow-y: auto;
+  height: 83dvh;
+  overflow-y: scroll;
+  // -ms-overflow-style: none; /* IE/Edge */
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
-// .GameFrameGroup {
-//   display: flex;
-//   flex-wrap: wrap;
-//   justify-content: space-between;
-// }
+section{
+  height: 85vh;
+  background-color: #F6F4D2;
+}
 
 </style>

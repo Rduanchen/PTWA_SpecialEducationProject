@@ -117,10 +117,10 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 
 .navbar {
-  background-color: #57B9D9; 
+  background-color: #F19C79;
   height: 10vh; 
   width: 100%; 
   margin: 0;
@@ -134,7 +134,6 @@ export default {
   }
   
 }
-
 
 .header {
   display: flex;

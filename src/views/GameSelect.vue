@@ -4,34 +4,32 @@
 
 <template>
     <header>
-      <nav class="container navbar navbar-expand-md navbar-dark sticky-top">
-        <div class="container-fluid d-flex flex-column justify-content-start align-items-start" style="width: 100%;">
-          <div class="d-flex justify-content-start align-items-center flex-row w-100">
-            <a class="navbar-brand mt-2 mb-2" href="#" alt="Home">
+      <nav class="container navbar navbar-expand-lg navbar-light sticky-top justify-content-center" style="justify-content: flex-start !important;">
+          <a class="navbar-brand mt-2 mb-2" href="#" alt="Home">
               <img src="@/assets/images/nav_bar/logo.png" class="img-fluid" />
-            </a>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul class="navbar-nav navbar-nav-scroll">
-                <li class="nav-item">
-                  <a class="nav-link" @click="ChangeSubject('Math')"><img src="@/assets/button/math.png"/></a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" @click="ChangeSubject('Chinese')"><img src="@/assets/button/chinese.png"></a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" @click="ChangeSubject('Technology')"><img src="@/assets/button/technology.png"></a>
-                </li>
+          </a>
+          <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav">
+                  <li class="nav-item">
+                      <a class="nav-link" @click="ChangeSubject('Math')"><img src="@/assets/button/math.png"/></a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" @click="ChangeSubject('Chinese')"><img src="@/assets/button/chinese.png"></a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" @click="ChangeSubject('Technology')"><img src="@/assets/button/technology.png"></a>
+                  </li>
               </ul>
-            </div>
-            <div class="mt-3">
-              <ol class="breadcrumb">
-                <li class="breadcrumb-item text-white"><a href="#">主頁</a></li>
-                <li class="breadcrumb-item active text-white" aria-current="page"><a>{{Subjects[Subject]}}</a></li>
-              </ol>
-            </div>
           </div>
-        </div>
+          <div class="container sticky-top" style="width: 20%;">
+            <ol class="breadcrumb mb-0">
+              <li class="breadcrumb-item text-white"><i class="bi bi-house"></i><a href="#"> 主頁</a></li>
+              <li class="breadcrumb-item active text-white" aria-current="page"><i class="bi bi-book-half"></i><a>{{Subjects[Subject]}}</a></li>
+            </ol>
+          </div>
       </nav>
+
+
     </header>
     <section class="GameSelectSection" style="overflow-y: hidden;">
         <div class="container">
@@ -57,7 +55,7 @@
                             <div class="card GameCard my-2">
                               <div class="card-body">
                                 <img src="../assets/images/pics/cover_info.jpeg" class="card-img-top" alt="...">
-                                <router-link :to="{ name: 'Game', params: { id: item.id, Grade: this.ShowGrade, Subject: this.Subject } }">
+                                <router-link :to="{ name: 'Game', params: { id: item.id, Grade: this.ShowGrade, Subject: this.Subject ,GameName: item.Name} }">
                                   <p class="h5 card-title mt-2">{{ item.Name }}</p>
                                 </router-link>
                                 <p class="card-text">{{ item.Description }}</p>
@@ -128,15 +126,6 @@ header{
 .navbar {
   background-color: #F19C79; 
   height: 10vh; 
-  // width: 100%;
-  .navbar-brand {
-    img{
-        max-width: 70%
-    }
-  }
-  img {
-    max-width: 80%;
-  } 
 }
 .ItemFrame {
   height: 83dvh;

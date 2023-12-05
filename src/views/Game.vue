@@ -1,35 +1,30 @@
 <template>
     <header>
-      <nav class="container navbar navbar-expand-md navbar-dark sticky-top">
-        <div class="container-fluid d-flex flex-row justify-content-center align-items-center" style="width: 100%;">
-          <div class="d-flex justify-content-start align-items-center flex-row w-100">
-            <a class="navbar-brand" href="#" alt="Home">
+      <nav class="container navbar navbar-expand-lg navbar-light sticky-top justify-content-center" style="justify-content: flex-start !important;">
+          <a class="navbar-brand mt-2 mb-2" href="#" alt="Home">
               <img src="@/assets/images/nav_bar/logo.png" class="img-fluid" />
-            </a>
-          </div>
-          
-
-          <div class="w-100 d-flex align-items-center" style="height: 100%'';">
-            <ol class="breadcrumb ">
-              <li class="breadcrumb-item"><a href="#">主頁</a></li>
-              <li class="breadcrumb-item" aria-current="page"><router-link :to="{ name: 'GameSelect', params:{ id:this.Grade }}">{{ this.Grade }}年級 {{ Subjects[Subject] }}</router-link></li>
-              <li class="breadcrumb-item" aria-current="page"><a>{{this.GameID}}</a></li>
+          </a>
+          <div class="container sticky-top">
+            <ol class="breadcrumb mb-0">
+              <li class="breadcrumb-item"><i class="bi bi-house"></i><a href="#">  主頁</a></li>
+              <li class="breadcrumb-item" aria-current="page"><i class="bi bi-book-half"></i><router-link :to="{ name: 'GameSelect', params:{ id:this.Grade }}">{{ this.Grade }}  年級 {{ Subjects[Subject] }}</router-link></li>
+              <li class="breadcrumb-item active" aria-current="page"><i class="bi bi-pen"></i><a>  {{this.Name}}</a></li>
             </ol>
-          </div>
-        </div>
+          </div>     
       </nav>
     </header>
     <section>
-        <div class="row container-fluid mt-3">
-            <div class="col-md-10">
+      <div class="container">
+        <div class="row mt-3">
+            <div class="col-10" style="width: 80%;">
               <div class="tab-content" id="v-pills-tabContent">
               <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
                 <canvas id="myChart" class="mx-auto"></canvas>
               </div>
               <!-- Other content for tabs goes here -->
               </div>
-              </div>
-              <div class="col-md-2 card sidebar d-flex row flex-direction-column align-items-stretch">
+            </div>
+            <div class="col-2 card sidebar d-flex row flex-direction-column align-items-stretch" style="width: 20%;">
                 <div class="card-body">
                   <p class="card-title h4">功能區</p>
                   <div class="d-grid gap-3">
@@ -42,8 +37,9 @@
                     <a><img src="@/assets/button2/info.png"></a>
                   </div>
                 </div>
-              </div>
+            </div>
         </div>
+      </div>    
     </section>
 </template>
 
@@ -55,6 +51,7 @@ export default {
       GameID: "",
       Subject: "",
       Grade: "",
+      Name: "",
       Subjects:{
         Math: "數學",
         Chinese: "國語",
@@ -68,6 +65,7 @@ export default {
     this.GameID = this.$route.params.id;
     this.Subject = this.$route.params.Subject;
     this.Grade = this.$route.params.Grade;
+    this.Name = this.$route.params.GameName;
     console.log(this.GameID);
     console.log(this.Subject);
     console.log(this.Grade);
@@ -107,7 +105,7 @@ header{
 }
 .breadcrumb .breadcrumb-item {
   a {
-    color: #000; /* 替換為你想要的顏色 */
+    color: #FFF; /* 替換為你想要的顏色 */
     font-size: 1.2em;
   }
 

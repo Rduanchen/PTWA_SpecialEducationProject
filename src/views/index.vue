@@ -1,10 +1,10 @@
 <template>
-  <div>
+  <div class="d-flex flex-column min-vh-100">
     <header>
       <nav class="navbar navbar-expand-md navbar-dark sticky-top">
         <div class="container-fluid" style="width: 100%;">
           <a class="navbar-brand" href="#" alt="Home">
-            <img src="@/assets/images/nav_bar/logo.png" class="img-fluid" style="max-width: 90%;" />
+            <img src="@/assets/images/nav_bar/logo.png" class="img-fluid"/>
           </a>
           <div class="collapse navbar-collapse sticky-top" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto mb-2 navbar-nav-scroll">
@@ -40,75 +40,68 @@
         </div>
       </nav>
     </header>
-  </div>
-  <header class="header container-fluid">
-    <div class="container d-flex align-items-center justify-content-start h-100 mb-5">
-      <div class="text-end text-white content">
-        <p class="h1">網站名稱</p>
-        <p class="h2">用遊戲翻轉教育，在遊戲中成長</p>
+  <!-- /**
+           * Renders a selection of grade buttons.
+           * Each grade button is a router link that navigates to the GameSelect view with a specific grade ID.
+           * The grade buttons are displayed as images.
+           * 
+           * @component
+           * @example
+           * <GradeSelection></GradeSelection>
+           */ -->
+  <header class="header container d-flex align-items-center flex-wrap">
+      <p class="text-center text-white h1 mb-0">請選擇年級</p>
+    <div class="row GradeSelectMenu flex-nowrap d-flex justify-content-center">
+        <div class="col-2">
+          <router-link :to="{ name: 'GameSelect', params: { id: 1 } }" class="submenu-link-block">
+            <img src="@/assets/images/grade_btn/grade1-3.png" class="img-fluid" alt="一年遊戲">
+          </router-link>
+        </div>
+        <div class="col-2">
+          <router-link :to="{ name: 'GameSelect', params: { id: 2 } }" alt="二年遊戲" class="submenu-link-block">
+            <img src="@/assets/images/grade_btn/grade2-3.png" class="img-fluid" >
+          </router-link>
+        </div>
+        <div class="col-2">
+          <router-link :to="{ name: 'GameSelect', params: { id: 3 } }" alt="三年遊戲" class="submenu-link-block">
+            <img src="@/assets/images/grade_btn/grade3-3.png" class="img-fluid" >
+          </router-link>
+        </div>
+        <div class="col-2">
+          <router-link :to="{ name: 'GameSelect', params: { id: 4 } }" alt="四年遊戲" class="submenu-link-block">
+            <img src="@/assets/images/grade_btn/grade4-3.png" class="img-fluid" >
+          </router-link>
+        </div>
+        <div class="col-2">
+          <router-link :to="{ name: 'GameSelect', params: { id: 5 } }" alt="五年遊戲" class="submenu-link-block">
+            <img src="@/assets/images/grade_btn/grade5-3.png" class="img-fluid" >
+          </router-link>
+        </div>
+        <div class="col-2">
+          <router-link :to="{ name: 'GameSelect', params: { id: 6 } }" alt="六年遊戲" class="submenu-link-block">
+            <img src="@/assets/images/grade_btn/grade6-3.png" class="img-fluid" >
+          </router-link>
+        </div>
       </div>
-    </div>
   </header>
 
-  <section class="container mt-5 mb-5 d-flex justify-content-center">
-    <div class="row">
-      <div class="col-6">
-        <img src="../assets/images/pics/cover_story.png" style="object-fit: cover;" class="w-100" width="400">
+  <!-- NF 頁尾設定 -->
+  <!-- <section class="">
+    <footer class="text-center text-white" style="background-color: #0a4275;">
+      <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+        © 2023 Copyright:
+        <a class="text-white" href="https://programtheworld.tw/">programtheworld.tw</a>
       </div>
-      <div class="col-6 d-flex flex-column justify-content-center ">
-        <div class="row d-flex justify-content-start align-content-start flex-column">
-          <p class="h1">請選擇年級</p>
-          <p>選擇年級以及進入遊戲</p>
-        </div>
-        <div class="row GradeSelectMenu">
-          <div class="col-2">
-            <router-link :to="{ name: 'GameSelect', params: { id: 1 } }" class="submenu-link-block">
-              <img src="@/assets/images/grade_btn/grade1-3.png" class="img-fluid" alt="一年遊戲">
-            </router-link>
-          </div>
-          <div class="col-2">
-            <router-link :to="{ name: 'GameSelect', params: { id: 2 } }" alt="二年遊戲" class="submenu-link-block">
-              <img src="@/assets/images/grade_btn/grade2-3.png" class="img-fluid" >
-            </router-link>
-          </div>
-          <div class="col-2">
-            <router-link :to="{ name: 'GameSelect', params: { id: 3 } }" alt="三年遊戲" class="submenu-link-block">
-              <img src="@/assets/images/grade_btn/grade3-3.png" class="img-fluid" >
-            </router-link>
-          </div>
-          <div class="col-2">
-            <router-link :to="{ name: 'GameSelect', params: { id: 4 } }" alt="四年遊戲" class="submenu-link-block">
-              <img src="@/assets/images/grade_btn/grade4-3.png" class="img-fluid" >
-            </router-link>
-          </div>
-          <div class="col-2">
-            <router-link :to="{ name: 'GameSelect', params: { id: 5 } }" alt="五年遊戲" class="submenu-link-block">
-              <img src="@/assets/images/grade_btn/grade5-3.png" class="img-fluid" >
-            </router-link>
-          </div>
-          <div class="col-2">
-            <router-link :to="{ name: 'GameSelect', params: { id: 6 } }" alt="六年遊戲" class="submenu-link-block">
-              <img src="@/assets/images/grade_btn/grade6-3.png" class="img-fluid" >
-            </router-link>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!--NF 頁尾設定 -->
-  <section class="">
-  <footer class="text-center text-white" style="background-color: #0a4275;">
-    <!-- Copyright -->
+    </footer>
+  </section> -->
+  <footer class="mt-auto text-center text-white" style="background-color: #0a4275;">
     <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-      © 2023 Copyright:
+      © 2023 版權所有:
       <a class="text-white" href="https://programtheworld.tw/">programtheworld.tw</a>
     </div>
-    <!-- Copyright -->
   </footer>
-  <!-- Footer -->
-</section>
- 
+</div>
+
 </template>
 
 <script>
@@ -136,9 +129,9 @@ export default {
 }
 
 .header {
-  display: flex;
-  height: 90vh;
-  position: relative; 
+  // display: flex;
+  height: 78vh; 
+  // position: relative; 
 }
 
 .header::before {
@@ -174,4 +167,11 @@ export default {
     }
   }
 }
+footer {
+  position: relative;
+  top: auto;
+}
+
+
+
 </style>

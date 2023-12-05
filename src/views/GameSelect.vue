@@ -7,32 +7,31 @@
       <nav class="container navbar navbar-expand-md navbar-dark sticky-top">
         <div class="container-fluid d-flex flex-column justify-content-start align-items-start" style="width: 100%;">
           <div class="d-flex justify-content-start align-items-center flex-row w-100">
-            <a class="navbar-brand" href="#" alt="Home">
+            <a class="navbar-brand mt-2 mb-2" href="#" alt="Home">
               <img src="@/assets/images/nav_bar/logo.png" class="img-fluid" />
             </a>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav navbar-nav-scroll">
                 <li class="nav-item">
-                  <a class="nav-link h1" @click="ChangeSubject('Math')">數學</a>
+                  <a class="nav-link" @click="ChangeSubject('Math')"><img src="@/assets/button/math.png"/></a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link h1" @click="ChangeSubject('Chinese')">國語</a>
+                  <a class="nav-link" @click="ChangeSubject('Chinese')"><img src="@/assets/button/chinese.png"></a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link h1" @click="ChangeSubject('Technology')">多元科技</a>
+                  <a class="nav-link" @click="ChangeSubject('Technology')"><img src="@/assets/button/technology.png"></a>
                 </li>
               </ul>
             </div>
-          </div>
-          <div class="w-100">
-            <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a href="#">主頁</a></li>
-              <li class="breadcrumb-item active" aria-current="page">{{Subjects[Subject]}}</li>
-            </ol>
+            <div class="mt-3">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item text-white"><a href="#">主頁</a></li>
+                <li class="breadcrumb-item active text-white" aria-current="page"><a>{{Subjects[Subject]}}</a></li>
+              </ol>
+            </div>
           </div>
         </div>
       </nav>
-
     </header>
     <section class="GameSelectSection" style="overflow-y: hidden;">
         <div class="container">
@@ -49,25 +48,13 @@
                 </div>
                 <!-- NF img 的屬性需要修正 fs-->
                 <div class="col-8 container ItemFrame mt-4" v-if="Show" :key="Refresh">
-                  <div class="card Charpter mb-4 px-0" v-for="items in ShowInfo[Subject][SelectedChapter].Section" v-if="ShowInfo">
-                  <div class="card-body">
+                  <div class="Charpter mb-4 px-0" v-for="items in ShowInfo[Subject][SelectedChapter].Section" v-if="ShowInfo">
+                  <div>
                       <h5 class="card-title mb-3">{{ items.Title }}</h5>
                       <div class="row" style="overflow-x: auto;">
-
-                        <!-- <div v-for="item in items.Games" class="d-flex flex-row justify-content-start align-self-stretch flex-nowrap">
-                          <div class="card GameCard mx-2 mb-2 flex-fill ">
-                          <div class="card-body">
-                              <img src="../assets/images/pics/cover_info.jpeg" class="card-img-top" alt="...">
-                              <router-link :to="{ name:'Game',params:{ id:item.id, Grade:this.ShowGrade, Subject: this.Subject } }">
-                                <p class="h5 card-title mt-2">{{item.Name}}</p>
-                              </router-link>
-                              <p class="card-text">{{ item.Description }}</p>
-                          </div>
-                          </div>
-                        </div> -->
                         <div class="row">
-                          <div v-for="item in items.Games" class="col-12 col-md-6 col-lg-4">
-                            <div class="card GameCard">
+                          <div v-for="item in items.Games" class="col-12 col-md-6 col-lg-4 d-flex align-self-stretch">
+                            <div class="card GameCard my-2">
                               <div class="card-body">
                                 <img src="../assets/images/pics/cover_info.jpeg" class="card-img-top" alt="...">
                                 <router-link :to="{ name: 'Game', params: { id: item.id, Grade: this.ShowGrade, Subject: this.Subject } }">
@@ -136,11 +123,11 @@ export default {
 <style lang="scss" scoped>
 
 header{
-  background-color: #F19C79
+  background-color: #F19C79;
 }
 .navbar {
   background-color: #F19C79; 
-  height: 15vh; 
+  height: 10vh; 
   // width: 100%;
   .navbar-brand {
     img{
@@ -168,8 +155,16 @@ header{
   }
 }
 section{
-  height: 85vh;
-  background-color: #F6F4D2;
+  height: 90vh;
+  background-color: #FFFF;
+}
+
+.breadcrumb .breadcrumb-item {
+  a {
+    color: #FFFFFF; /* 替換為你想要的顏色 */
+    font-size: 1.2em;
+  }
+
 }
 
 </style>

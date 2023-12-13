@@ -6,6 +6,7 @@ import vue from '@vitejs/plugin-vue'
 
 import inject from '@rollup/plugin-inject'
 export default defineConfig({
+    base: './PTWA_SpecialEducationProject',
     plugins: [
         vue(),
         inject({

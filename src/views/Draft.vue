@@ -127,7 +127,6 @@
                 </div>
               </div>
             </div>
-            
           </div>
         </div>
       </div>
@@ -152,8 +151,7 @@
       },
     },
     mounted() {
-      let collapseElements = document.querySelectorAll('.multi-collapse');
-      
+      let collapseElements = document.querySelectorAll('.multi-collapse');      
       collapseElements.forEach((collapseEl) => {
         collapseEl.addEventListener('show.bs.collapse', () => {
           collapseElements.forEach((otherCollapseEl) => {
@@ -166,7 +164,6 @@
     },
   };
   </script>
-  
   <style>
   body {
       background-image: url('@/assets/images/grade_btn/bg.png');

@@ -54,32 +54,32 @@
     <div class="row GradeSelectMenu flex-nowrap d-flex justify-content-center">
         <div class="col-2">
           <router-link :to="{ name: 'GameSelect', params: { id: 1 } }" class="submenu-link-block">
-            <img src="@/assets/images/grade_btn/grade1-3.png" class="img-fluid" alt="一年遊戲">
+            <img src="@/assets/images/grade_btn/g1_hover.png" class="img-fluid" alt="一年遊戲">
           </router-link>
         </div>
         <div class="col-2">
           <router-link :to="{ name: 'GameSelect', params: { id: 2 } }" alt="二年遊戲" class="submenu-link-block">
-            <img src="@/assets/images/grade_btn/grade2-3.png" class="img-fluid" >
+            <img src="@/assets/images/grade_btn/g2_hover.png" class="img-fluid" >
           </router-link>
         </div>
         <div class="col-2">
           <router-link :to="{ name: 'GameSelect', params: { id: 3 } }" alt="三年遊戲" class="submenu-link-block">
-            <img src="@/assets/images/grade_btn/grade3-3.png" class="img-fluid" >
+            <img src="@/assets/images/grade_btn/g3_hover.png" class="img-fluid" >
           </router-link>
         </div>
         <div class="col-2">
           <router-link :to="{ name: 'GameSelect', params: { id: 4 } }" alt="四年遊戲" class="submenu-link-block">
-            <img src="@/assets/images/grade_btn/grade4-3.png" class="img-fluid" >
+            <img src="@/assets/images/grade_btn/g4_hover.png" class="img-fluid" >
           </router-link>
         </div>
         <div class="col-2">
           <router-link :to="{ name: 'GameSelect', params: { id: 5 } }" alt="五年遊戲" class="submenu-link-block">
-            <img src="@/assets/images/grade_btn/grade5-3.png" class="img-fluid" >
+            <img src="@/assets/images/grade_btn/g5_hover.png" class="img-fluid" >
           </router-link>
         </div>
         <div class="col-2">
           <router-link :to="{ name: 'GameSelect', params: { id: 6 } }" alt="六年遊戲" class="submenu-link-block">
-            <img src="@/assets/images/grade_btn/grade6-3.png" class="img-fluid" >
+            <img src="@/assets/images/grade_btn/g6_hover.png" class="img-fluid" >
           </router-link>
         </div>
       </div>

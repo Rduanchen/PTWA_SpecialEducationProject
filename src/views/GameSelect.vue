@@ -54,7 +54,7 @@
                           <div v-for="item in items.Games" class="col-12 col-md-6 col-lg-4 d-flex align-self-stretch">
                             <div class="card GameCard my-2">
                               <div class="card-body">
-                                <img src="../assets/images/pics/cover_info.jpeg" class="card-img-top" alt="...">
+                                <img src="@/assets/images/pics/cover_info.jpeg" class="card-img-top" alt="...">
                                 <router-link :to="{ name: 'Game', params: { id: item.id, Grade: this.ShowGrade, Subject: this.Subject ,GameName: item.Name} }">
                                   <p class="h5 card-title mt-2">{{ item.Name }}</p>
                                 </router-link>

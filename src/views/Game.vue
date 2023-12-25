@@ -17,23 +17,39 @@
       <div class="container-fluid">
         <div class="row mt-3 justify-content-center">
           <div class="col-8 GameArea">
-            <!-- <TrueFalseGame></TrueFalseGame> -->
-            <canvas></canvas>
+            <div class="row levelbutton">
+              <div class="d-grid gap-2 d-md-flex justify-content-center mb-3 levebar" style="width: 100;">
+                <button type="button" class="btn btn-primary" disabled>關卡</button>
+                <div v-for="(i, key) in GameConfig.Questions" :key="key" class="grid-item">
+                  <button type="button" class="btn btn-primary w-auto" @click="changelevel(key+1)">{{ key+1 }}</button>
+                </div>
+                <button type="button" class="btn btn-primary" disabled v-if="GameStatus=='Progressing'">時間 : {{ time }}</button>
+              </div>
+            </div>
+            <div class="row Game_Component">
+              <TrueFalseGame v-if="GameConfig.GameType == 'TrueFalse'"
+               :question="GameConfig.Questions[Nowlevel - 1].Question"
+               :answer="GameConfig.Questions[Nowlevel - 1].Answer"
+               :imgsrc="GameConfig.Questions[Nowlevel - 1].img">
+              </TrueFalseGame>
+              <SelectGame v-if="GameConfig.GameType == 'SelectGame'" :question=GameConfig.Questions[1].Question :imgsrc=GameConfig.Questions[1].img :answer=GameConfig.Questions[1].Answer></SelectGame>
+              <NumberInputGame v-if="GameConfig.GameType == 'NumberInputGame'" :question=GameConfig.Questions[Nowlevel-1].Question :answer=GameConfig.Questions[Nowlevel-1].Answer :imgsrc=GameConfig.Questions[Nowlevel-1].img></NumberInputGame>
+            </div>
           </div>
           <div class="col-3 card SideBar">
               <p class="card-title h4 mt-3">功能區</p>
               <div class="card-body" style="border-style: none;">
                 <div class="list-group mt-1">
-                  <a class="list-group-item list-group-item" @click="PreviousQuestion()"><img src="@/assets/buttonV3/previous.png" class="img-hover-zoom"></a>
-                  <a class="list-group-item list-group-item" @click="NextQuestion()"><img src="@/assets/buttonV3/next.png" class="img-hover-zoom"></a>
-                  <a class="list-group-item list-group-item" v-if="GameStatus=='Progressing'"><img src="@/assets/buttonV3/submit.png" class="img-hover-zoom"></a>
-                  <a class="list-group-item list-group-item" v-if="GameStatus=='NotStart'"><img src="@/assets/buttonV3/start.png" class="img-hover-zoom"></a>
-                  <a class="list-group-item list-group-item" @click="reloadPage()" v-if="GameStatus=='Progressing'|| 'Done'"><img src="@/assets/buttonV3/restart.png" class="img-hover-zoom"></a>
-                  <a class="list-group-item list-group-item" v-if="GameStatus=='Progressing'"><img src="@/assets/buttonV3/hint.png" class="img-hover-zoom"></a>
-                  <a class="list-group-item list-group-item" @click="tocsv(this.download_data)" v-if="GameStatus=='Done'" ><img src="@/assets/buttonV3/download.png" class="img-hover-zoom"></a>
-                  <a class="list-group-item list-group-item" data-bs-toggle="modal" data-bs-target="#exampleModal"><img src="@/assets/buttonV3/info.png" class="img-hover-zoom"></a>
-                  <a class="list-group-item list-group-item"><img src="@/assets/buttonV3/calculator.png" class="img-hover-zoom"></a>
-                  <a class="list-group-item list-group-item"><img src="@/assets/buttonV3/record.png" class="img-hover-zoom"></a>
+                  <a class="list-group-item" @click="PreviousQuestion()"><img src="@/assets/buttonV3/previous.png" class="img-hover-zoom"></a>
+                  <a class="list-group-item" @click="NextQuestion()"><img src="@/assets/buttonV3/next.png" class="img-hover-zoom"></a>
+                  <a class="list-group-item" v-if="GameStatus=='Progressing'"><img src="@/assets/buttonV3/submit.png" class="img-hover-zoom"></a>
+                  <a class="list-group-item" @click="StartGame()" v-if="GameStatus=='NotStart'"><img src="@/assets/buttonV3/start.png" class="img-hover-zoom"></a>
+                  <a class="list-group-item" @click="reloadPage()" v-if="GameStatus=='Progressing'|| 'Done'"><img src="@/assets/buttonV3/restart.png" class="img-hover-zoom"></a>
+                  <a class="list-group-item" v-if="GameStatus=='Progressing'"><img src="@/assets/buttonV3/hint.png" class="img-hover-zoom"></a>
+                  <a class="list-group-item" @click="tocsv(this.download_data)" v-if="GameStatus=='Done'" ><img src="@/assets/buttonV3/download.png" class="img-hover-zoom"></a>
+                  <a class="list-group-item" data-bs-toggle="modal" data-bs-target="#exampleModal"><img src="@/assets/buttonV3/info.png" class="img-hover-zoom"></a>
+                  <a class="list-group-item"><img src="@/assets/buttonV3/calculator.png" class="img-hover-zoom"></a>
+                  <a class="list-group-item"><img src="@/assets/buttonV3/record.png" class="img-hover-zoom"></a>
                 </div>
                 <!-- Temp check box
                 For Switch Game Status
@@ -71,22 +87,27 @@
 import fetchJson from '@/utilitys/fetch-json.js';
 import array2csv from '@/utilitys/array2csv.js';
 import TrueFalseGame from '@/views/GameTemplate/PublicSample.vue';
+import SelectGame from '@/views/GameTemplate/SelectGame.vue';
+import NumberInputGame from '@/views/GameTemplate/NumberinputGame.vue';
 export default {
     data() {
       return {
-        GameStatus: "Done", //遊戲狀態
-        download_data: "", //下載的資料，格式為二維陣列。
+        GameType: "",
+        GameStatus: "NotStart", //遊戲狀態
+        download_data: [], //下載的資料，格式為二維陣列。
         GameID: "",
         Subject: "",
         Grade: "",
         Name: "",
+        Nowlevel : 1,
         Subjects: {
             Math: "數學",
             Chinese: "國語",
             Technology: "多元科技",
         },
         GameConfig: {},
-        FakeButton: ['previous', 'next', 'submit', 'start', 'restart', 'hint', 'info']
+        time: 0,
+        intervalId: null,
       };
     },
     created() {
@@ -94,19 +115,31 @@ export default {
         this.Subject = this.$route.params.Subject;
         this.Grade = this.$route.params.Grade;
         this.Name = this.$route.params.GameName;
-        console.log(this.GameID);
-        console.log(this.Subject);
-        console.log(this.Grade);
         (async () => {
-            const res = await fetchJson("/GameConfig.json");
+            const res = await fetchJson("/Grade"+this.Grade+"/"+this.GameID+".json");
             this.GameConfig = res.data;
-            console.log(this.GameConfig);
-            console.log(this.GameConfig.Button["previous"]);
+            this.GameType = this.GameConfig.GameType;
         })();
+
     },
     methods: {
-        doAction() {
-            console.log("doAction");
+        dataPreprocess() {
+          //處裡遊戲的資料結構
+          var level = 1;
+          var download_data = ['關卡'];
+          for (var i in this.GameConfig.Questions) {
+            download_data.push('第' + level + '關');
+            level++;
+          }
+          download_data.push('時間');
+          download_data.push('填入答案紀錄');
+          console.log(levelname);
+          array2csv(levelname);
+        },
+        StartGame() {
+            this.GameStatus = "Progressing";
+            this.startTimer();
+            this.dataPreprocess();
         },
         tocsv(data) {
             //Get Data From Component
@@ -116,15 +149,50 @@ export default {
         reloadPage() {
           location.reload();
         },
+        changelevel(change2level) {
+          this.Nowlevel = change2level;
+          this.pauseTimer();
+          //FIXME 傳資料進入CSV
+          this.resetTimer();
+        },
         NextQuestion() {
-            console.log("NextQuestion");
+          if (this.Nowlevel < this.GameConfig.TotalLevel) {
+            this.Nowlevel++;
+          }
+          this.pauseTimer();
+          //FIXME 傳資料進入CSV
+          this.resetTimer();
         },
         PreviousQuestion() {
-            console.log("PreviousQuestion");
+          if (this.Nowlevel > 1) {
+            this.Nowlevel--;
+          } 
+          this.pauseTimer();
+          //FIXME 傳資料進入CSV
+          this.resetTimer();
+        },
+        startTimer() {
+          console.log("timer is started")
+          if (this.intervalId) {
+            return;
+          }
+          this.intervalId = setInterval(() => {
+            this.time++;
+          }, 1000);
+        },
+        pauseTimer() {
+          clearInterval(this.intervalId);
+          this.intervalId = null;
+        },
+        resetTimer() {
+          this.pauseTimer();
+          this.time = 0;
         }
-    },
+      },
     components: {
         TrueFalseGame,
+        SelectGame,
+        NumberInputGame
     }
 }
 </script>
@@ -146,7 +214,7 @@ header{
   } 
 }
 .sidebar {
-  height: 85vh;
+  height: 80vh;
 }
 
 .img-hover-zoom {
@@ -179,18 +247,21 @@ header{
   max-width: 100%;
   height: auto; /* 保持圖片的比例 */
 }
+.levebar{
+  overflow-x: scroll;
+}
 .GameArea {
-  // width: 80%;
   background-color: #fff;
   border-radius: 10px;
   // border: #000 1px solid;
   height: 85vh;
 }
-canvas {
-  width: 95%;
-  background-color: #fff;
-  border-radius: 10px;
-  border: #000 1px solid;
-  height: 80vh;
+// .Game_Component {
+//   height: vh !important;
+// }
+.levelbutton {
+  button{
+    width: 100px !important;
+  }
 }
 </style>

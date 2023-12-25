@@ -29,6 +29,26 @@ const router = createRouter({
       path :"/PublicSample",
       name: "PublicSample",
       component:()=>import("@/views/GameTemplate/PublicSample.vue")
+    },
+    {
+      path :"/SelectGame",
+      name: "SelectGame",
+      component:()=>import("@/views/GameTemplate/SelectGame.vue")
+    },
+    {
+      path :"/VirtualNumPad",
+      name: "VirtualNumPad",
+      component:()=>import("@/components/VirtualNumPad.vue")
+    },
+    {
+      path:"/NumberInputGame",
+      name:"NumberInputGame",
+      component:()=>import("@/views/GameTemplate/NumberInputGame.vue")
+    },
+    {
+      path:"/testdnd",
+      name:"testdnd",
+      component:()=>import("@/components/testdnd.vue")
     }
   ]
 });

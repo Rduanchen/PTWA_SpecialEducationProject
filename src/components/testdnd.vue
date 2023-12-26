@@ -38,12 +38,17 @@
       >
         <template #item="{ element }">
           <div class="list-group-item" :class="{ 'not-draggable': !enabled }">
-            <!-- {{ element.name }} -->{{ element}}
+            <div class="card">
+              <div class="card-body">
+                <p class="h2">{{ element }}</p>
+              </div>
+            </div>
+            <!-- {{ element}} -->
+            
           </div>
         </template>
       </draggable>
     </div>
-
     <!-- <rawDisplayer class="col-3" :value="list" title="List" />s -->
   </div>
 </template>

@@ -4,8 +4,7 @@
             <div class="col-md-8">
                 <div class="card mx-auto">
                     <div class="card-body">
-                        <img class="card-img-top" :src=imgsrc alt="Card image cap">
-                    
+                        <img class="card-img-top" :src="require(imgsrc)" alt="Card image cap">
                     </div>
                 </div>
             </div>

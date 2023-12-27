@@ -1,0 +1,1 @@
+import{_ as r}from"./_plugin-vue_export-helper-c27b6911.js";import{o as t,c as o}from"./index-1c222339.js";const s={name:"Image",data(){return{ImgUrl}}},c=["src"];function n(a,m,_,p,e,l){return t(),o("img",{src:e.ImgUrl},null,8,c)}const i=r(s,[["render",n]]);export{i as default};

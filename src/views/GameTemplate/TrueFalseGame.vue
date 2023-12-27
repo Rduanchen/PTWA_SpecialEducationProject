@@ -4,7 +4,7 @@
             <div class="col-md-8">
                 <div class="card mx-auto">
                     <div class="card-body">
-                        <img class="card-img-top" :src="require(imgsrc)" alt="Card image cap">
+                        <img class="card-img-top" :src="imageUrl" alt="Card image cap">
                     </div>
                 </div>
             </div>
@@ -25,10 +25,10 @@
 <script>
 import fetchJson from '@/utilitys/fetch-json.js';
 export default {
-    name: 'SelectGame',
+    name: 'TrueFalseGame',
     data(){
         return {
-   
+            imageUrl : ''
         }
     },
     props: {
@@ -56,14 +56,14 @@ export default {
             }
             else{
                 this.$emit('check-answer',true);
-                console.log('check answer : True');
+                console.log('check answer : False');
             }
         }
     
     },
-    mounted() {
-        console.log(this.imgsrc); // 在父組件中
-        // 或者
+    created() {
+        this.imageUrl=new URL(this.imgsrc, import.meta.url).href
+        console.log(this.imageUrl);
     }
 }
 

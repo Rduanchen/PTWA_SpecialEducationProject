@@ -86,7 +86,7 @@
 <script>
 import fetchJson from '@/utilitys/fetch-json.js';
 import array2csv from '@/utilitys/array2csv.js';
-import TrueFalseGame from '@/views/GameTemplate/PublicSample.vue';
+import TrueFalseGame from '@/views/GameTemplate/TrueFalseGame.vue';
 import SelectGame from '@/views/GameTemplate/SelectGame.vue';
 import NumberInputGame from '@/views/GameTemplate/NumberinputGame.vue';
 export default {

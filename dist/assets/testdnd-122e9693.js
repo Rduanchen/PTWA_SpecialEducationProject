@@ -1,1 +1,0 @@
-import{I as t}from"./cover_info-2f8b1636.js";import{_ as e}from"./_plugin-vue_export-helper-c27b6911.js";import{o,c as s}from"./index-2e826f01.js";const c={name:"Image",data(){return{ImgUrl:t}}},n=["src"];function a(m,_,p,f,r,i){return o(),s("img",{src:r.ImgUrl},null,8,n)}const g=e(c,[["render",a]]);export{g as default};

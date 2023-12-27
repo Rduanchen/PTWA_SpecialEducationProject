@@ -5,7 +5,7 @@
             <div class="col-md-8 align-self-center">
                 <div class="card mx-auto">
                     <div class="card-body">
-                        <img class="card-img-top" src="../../assets/images/pics/cover_story.png" alt="Card image cap">
+                        <img class="card-img-top" :src="imageUrl" alt="Card image cap">
                     </div>
                 </div>
             </div>
@@ -26,7 +26,7 @@ export default {
     name: 'SelectGame',
     data(){
         return {
-            
+            imageUrl:'',
         }
     },
     props: {
@@ -57,6 +57,10 @@ export default {
             }
         }
     
+    },
+    created() {
+        this.imageUrl=new URL(this.imgsrc, import.meta.url).href
+        console.log(this.imageUrl);
     }
 }
 </script>

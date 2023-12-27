@@ -1,17 +1,15 @@
-function EmitResult(iftrue,response){
-    if (iftrue)
-        this.$emit('check-answer',iftrue,response)
-    else
-        this.$emit('check-answer',iftrue,response)
-}
-
-export function CheckTrueFalseAnswer(answer){
-    if(answer == this.answer){
-        this.$emit('check-answer',true);
-        console.log('check answer : True');
+/**
+ * 檢查答案是否正確。
+ * 
+ * @param {String} iftrue 第一個加數。
+ * @param {boolean} response 第二個加數。
+ */
+export function CheckTrueFalseAnswer(answer,response){
+    if(answer == response){
+        return true;
     }
     else{
-        this.$emit('check-answer',true);
-        console.log('check answer : True');
+        return false;
     }
 }
+//for TrueFalseGame SelectGame NumberInputGame Only

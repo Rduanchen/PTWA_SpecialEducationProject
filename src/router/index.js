@@ -26,9 +26,9 @@ const router = createRouter({
       component:()=>import("@/views/GameTemplate/index.vue")
     },
     {
-      path :"/PublicSample",
-      name: "PublicSample",
-      component:()=>import("@/views/GameTemplate/PublicSample.vue")
+      path :"/TrueFalseGame",
+      name: "TrueFalseGame",
+      component:()=>import("@/views/GameTemplate/TrueFalseGame.vue")
     },
     {
       path :"/SelectGame",

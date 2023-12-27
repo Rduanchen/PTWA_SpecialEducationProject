@@ -4,7 +4,7 @@
         <div class="col-8">
             <div class="card">
                 <div class="card-body">
-                    <img class="card-img-top" src="../../assets/images/pics/cover_info.jpeg" alt="Card image cap">
+                    <img class="card-img-top" :src="imageUrl" alt="Card image cap">
                 </div>
             </div>
         </div>
@@ -22,11 +22,12 @@
 
 <script>
 import VirtualNumPad from '@/components/VirtualNumPad.vue'; 
+import * as CA from '@/utilitys/CheckAnswer.js';
 export default {
     name: 'NumberInputGame',
     data() {
         return {
-            // Your component data goes here
+            imageUrl : ''
         };
     },
     props: {
@@ -49,19 +50,12 @@ export default {
             this.CheckAnswer(data);
         },
         CheckAnswer(data){
-            if(data == this.answer){
-                this.$emit('check-answer',true);
-                console.log('check answer : True');
-            }
-            else{
-                this.$emit('check-answer',false);
-                console.log('check answer : False');
-            }
+            var response=CA.CheckTrueFalseAnswer(data,this.answer)
+            this.$emit('check-answer',response,);
         }
     },
     created() {
-        // Your component initialization goes here
-        console.log(this.imgsrc,this.question,this.answer);
+        this.imageUrl=new URL(this.imgsrc, import.meta.url).href
     },
     components: {
         VirtualNumPad
